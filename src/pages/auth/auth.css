@@ -1,0 +1,89 @@
+.authDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative
+}
+
+.authDivSm {
+    display: flex;
+    height: 100%;
+    width: 100%
+}
+
+.authHeaderDiv {
+    width: 50%;
+    background: #0799fac4;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.authHeader {
+    padding: 2rem;
+    color: #fff;
+    text-shadow: 4px 4px 4px rgba(1, 1, 1, 0.5);
+    font-size: 4vw
+}
+
+.centerCircleDiv {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+    width: 100%;
+    z-index: 0
+}
+
+.centerCircle {
+    height: 5rem;
+    width: 5rem;
+    border: 6px solid #0e075a;
+    background: red;
+    border-radius: 50%
+}
+
+.formDiv {
+    background-color: #0e075a;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem
+}
+
+.img {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%
+}
+
+.formInputDiv {
+    z-index: 1;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem
+}
+
+.formInputs {
+    background: #05003b;
+    color: #fff;
+    width: 95%;
+    padding: 2.5%;
+    border-radius: 6px;
+    border: none
+}
+
+.formInputBtn {
+    width: 100%;
+    padding: 2.5%;
+    border-radius: 12px;
+    border: none;
+    background-color: #0684fa
+}
