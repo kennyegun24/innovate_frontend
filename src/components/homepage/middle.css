@@ -1,0 +1,8 @@
+.middlePageDiv {
+    /* overflow-y: scroll; */
+    /* height: 100% */
+}
+
+.middlePageDiv::-webkit-scrollbar {
+    /* display: none; */
+}
