@@ -6,6 +6,7 @@ import Register from './pages/auth/Register';
 import Homepage from './pages/homepage/Homepage';
 import UserProfile from './pages/profile/Profile';
 import About from './pages/profile/About';
+import PostsDetails from './components/PostsDetails';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/' element={<Homepage />} />
           <Route path='/userprofile' element={<UserProfile />} />
           <Route path='/about' element={<About />} />
+          <Route path='/post_details/:id' element={<PostsDetails />} />
         </Routes>
       </BrowserRouter>
     </div>

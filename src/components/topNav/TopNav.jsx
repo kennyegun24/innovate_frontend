@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 
 const TopNav = () => {
     return (
-        <div style={{ height: '10vh', zIndex: 1, position: 'sticky', top: '0', background: '#151A23', padding: '0.5rem 2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ height: '10vh', zIndex: 99, position: 'sticky', top: '0', background: '#151A23', padding: '0.5rem 2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', }}>
                 <AiOutlineHeart className='icons' />
                 <BsBell className='icons' />
