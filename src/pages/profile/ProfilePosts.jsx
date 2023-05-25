@@ -6,8 +6,8 @@ import image3 from '../../images/noImage.png'
 import image4 from '../../images/screen-0.jpg'
 import image5 from '../../images/screen-3.jpg'
 import { FaShare, FaEllipsisV } from 'react-icons/fa'
-import Comments from '../../components/comments/Comments'
-import Likes from '../../components/likes/Likes'
+import Likes from '../../components/interractions/Likes'
+import Comments from '../../components/interractions/Comments'
 
 const ProfilePosts = () => {
     const data = [
