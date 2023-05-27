@@ -9,6 +9,7 @@ import trump from '../../images/trump.png'
 import gates from '../../images/gates.jpg'
 import { Row, Col } from 'antd'
 import { BsPatchCheckFill } from 'react-icons/bs'
+import './friends.css'
 
 const FriendList = () => {
     const data = [
@@ -62,16 +63,16 @@ const FriendList = () => {
         },
     ]
     return (
-        <div style={{ width: '90%', marginTop: '1.5rem', marginBottom: '1.5rem' }}>
-            <h4 style={{ color: '#fff', background: '#151A23', padding: '0.5rem' }}>All Followers</h4>
+        <div className='marginTop15 marginBtm15 width90' >
+            <h4 className='mainBackground white padding05rem' >All Followers</h4>
             <Row gutters={[32, 32]}>
                 {data && data.map((images, index) => (
                     <Col xs={24} sm={12} lg={6} xl={6} key={index}>
-                        <div style={{ color: '#fff', gap: '0.5rem', background: '#151A23', padding: '1rem', margin: '0.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <div className='white gap05rem mainBackground padding1rem flex column align_center margin05'>
                             <div>
-                                <img src={images.image} style={{ width: '3rem', height: '3rem', borderRadius: '50%' }} alt="" />
+                                <img className='friendsImage' src={images.image} alt="" />
                             </div>
-                            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                            <div className='flex align_center gap05rem'>
                                 <p>{images.name}</p>
                                 {images.verified && <BsPatchCheckFill style={{ color: '#5596E6' }} />}
                             </div>
