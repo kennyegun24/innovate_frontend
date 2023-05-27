@@ -4,7 +4,7 @@ import vic from '../../images/vic.jpg'
 import kim from '../../images/kim.jpg'
 import trump from '../../images/trump.png'
 import musk from '../../images/musk.jpg'
-
+import './comments.css'
 const PostComments = () => {
     const comments = [
         {
@@ -35,13 +35,13 @@ const PostComments = () => {
     ]
     return (
         <div>
-            <h4 style={{ color: '#fff' }}>Comments</h4>
+            <h4 className='white'>Comments</h4>
 
             {
                 comments.map((comment) => (
-                    <div style={{ borderBottom: '1px solid #111', padding: '0.5rem 0.5rem 1.5rem 0.5rem', display: 'flex', gap: '1rem' }}>
+                    <div className='commentsMainDiv flex gap1rem' >
                         <img className='postUpdateFormImage' src={comment.commentor_image} alt="" />
-                        <div style={{ display: 'flex', gap: '0.5rem', flexDirection: 'column', color: '#fff' }}>
+                        <div className='flex gap05rem column white'>
                             <h6 className='font14 weight600'>{comment.commentor_name}</h6>
                             <p className='font12'>{comment.commentor_text}</p>
                         </div>
