@@ -11,7 +11,7 @@
 
 .profileCoverImage {
     border-radius: 6px;
-    height: 60vh;
+    height: 50vh;
     width: 90%;
     object-fit: cover;
     margin-bottom: 0.5rem
@@ -126,4 +126,8 @@
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 12px
+}
+
+.active {
+    background-color: #5596E6;
 }
