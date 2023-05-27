@@ -1,9 +1,9 @@
 import React from 'react'
 import kenny from '../../images/kenny.png'
 import vic from '../../images/vic.jpg'
-import kim from '../../images/screen-0.jpg'
-import trump from '../../images/screen-3.jpg'
-import musk from '../../images/noImage.png'
+import kim from '../../images/kim.jpg'
+import trump from '../../images/trump.png'
+import musk from '../../images/musk.jpg'
 
 const PostComments = () => {
     const comments = [
@@ -26,6 +26,11 @@ const PostComments = () => {
             commentor_name: 'Donald Trump',
             commentor_image: trump,
             commentor_text: 'We have to deny the mexicans the priviledge of using this product, we must build the fence instead',
+        },
+        {
+            commentor_name: 'Elon Musk',
+            commentor_image: musk,
+            commentor_text: 'I believe in the future and I see man living in both Mars and on Earth. Mars is gonna be a free world without any government! ',
         },
     ]
     return (

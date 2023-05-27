@@ -2,7 +2,7 @@ import React from 'react'
 import vic from '../../images/kenny.png'
 import image from '../../images/screen-0.jpg'
 import { AiOutlineEdit } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const ProfileHeader = () => {
     return (
@@ -16,11 +16,9 @@ const ProfileHeader = () => {
                         Timeline
                     </button>
 
-                    <button className='profileTmAbBtns'>
-                        <Link to='/about' style={{ color: '#fff', textDecoration: 'none' }} >
-                            About
-                        </Link>
-                    </button>
+                    <NavLink className='profileTmAbBtns' to='/about' style={{ color: '#fff', textDecoration: 'none' }} >
+                        About
+                    </NavLink>
                 </div>
 
                 <div className='profileUserNameProfessionDetailsDiv'>
@@ -32,9 +30,9 @@ const ProfileHeader = () => {
                 </div>
 
                 <div className='profileFirstBtnsDiv'>
-                    <button className='profileTmAbBtns'>
+                    <NavLink className='profileTmAbBtns' to='/friends' style={{ color: '#fff', textDecoration: 'none' }} >
                         Friends
-                    </button>
+                    </NavLink>
 
                     <button className='profileTmAbBtns'>
                         Photos
@@ -44,7 +42,7 @@ const ProfileHeader = () => {
 
             <div className='profileFollowerEditDiv'>
                 <div className='ProfileFollowersDiv'>
-                    <h2>7K </h2>
+                    <h2>7.4K </h2>
                     <p className='opacity05'>Followers</p>
                 </div>
                 <button className='profileEditProfileButton'>

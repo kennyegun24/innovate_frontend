@@ -3,7 +3,7 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 const PostDetailsLoader = () => {
     return (
-        <SkeletonTheme baseColor="#202020" highlightColor="#333333">
+        <SkeletonTheme baseColor="#202836" highlightColor="#595959">
             <Skeleton height={250} width={450} />
             <div style={{ display: 'flex', gap: '0.5rem', flexDirection: 'column' }}>
                 <div style={{ display: 'flex', gap: '1rem' }}>
