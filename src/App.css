@@ -6,13 +6,14 @@
 
 :root {
   --mainColor: #2F3B50;
-  --secondaryColor: #111;
-  --primaryColor: #111;
+  --secondaryColor: #151A23;
+  --primaryColor: #202836;
   --white: #fff;
   --100vh: 100vh;
   --90vh: 90vh;
   --100: 100%;
   --90: 90%;
+  --80: 80%;
   --70: 70%;
   --50: 50%;
   --2: 2%;
@@ -27,6 +28,7 @@
   --18px: 18px;
   --05rem: 0.5rem;
   --1rem: 1rem;
+  --15rem: 1.5rem;
   --2rem: 2rem;
   --3rem: 3rem;
   --4rem: 4rem;
@@ -84,6 +86,10 @@
   justify-content: space-between;
 }
 
+.textCenter {
+  text-align: var(--center);
+}
+
 /* --------Flex end------- */
 
 
@@ -95,6 +101,14 @@
 
 .white {
   color: var(--white);
+}
+
+.mainBackground {
+  background: var(--secondaryColor);
+}
+
+.primaryColor {
+  background: var(--primaryColor);
 }
 
 /* --------Colors and backgrounds end------- */
@@ -114,6 +128,10 @@
   height: var(--100);
 }
 
+.height_fit {
+  height: fit-content;
+}
+
 /* --------Height end------- */
 
 
@@ -124,6 +142,10 @@
 
 .width100 {
   width: var(--100);
+}
+
+.width80 {
+  width: var(--80);
 }
 
 .width70 {
@@ -138,6 +160,10 @@
 
 
 /* --------padding------- */
+
+.padding05rem {
+  padding: var(--05rem);
+}
 
 .padding1rem {
   padding: var(--1rem);
@@ -159,16 +185,28 @@
 
 /* --------margin------- */
 
+.marginTop15 {
+  margin-top: 1.5rem;
+}
+
+.margin05 {
+  margin: 0.5rem;
+}
+
+.marginBtm15 {
+  margin-bottom: 1.5rem;
+}
+
 .marginBtm1rem {
-  padding: var(--1rem);
+  margin-bottom: var(--1rem);
 }
 
 .marginBtm2rem {
-  padding: var(--2rem);
+  margin-bottom: var(--2rem);
 }
 
 .marginBtm3rem {
-  padding: var(--3rem);
+  margin-bottom: var(--3rem);
 }
 
 /* --------margin end------- */
@@ -183,6 +221,10 @@
   gap: var(--1rem);
 }
 
+.gap15rem {
+  gap: var(--15rem);
+}
+
 .gap2rem {
   gap: var(--2rem);
 }
@@ -191,4 +233,8 @@
 
 .display_none {
   display: none;
+}
+
+.borderRadius10px {
+  border-radius: 10px;
 }
