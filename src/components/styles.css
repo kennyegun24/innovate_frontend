@@ -1,0 +1,31 @@
+.birthdayNewJobMainDiv {
+    height: 60vh;
+    border-radius: 12px
+}
+
+.birthdayJobIconsDiv {
+    height: 15%;
+}
+
+.newJobMainDiv {
+    background: #003366;
+    height: 60vh;
+    position: sticky;
+    top: 3rem
+}
+
+.birthdayMainDiv {
+    background: #2eb8b8;
+}
+
+.birthdayJobDivSm {
+    height: 85%
+}
+
+.birthdayJobWishButton {
+    border: none;
+    background: #111;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    border-radius: 12px;
+}
