@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { getPost } from '../redux/posts/postSlice'
@@ -10,7 +10,7 @@ import PostComments from './comments/Comments'
 import PostDetailsLoader from './loadingAnimation/PostDetailsLoader'
 
 const PostsDetails = () => {
-
+    const [more, setMore] = useState(false)
     const { pathname } = useLocation()
     const dispatch = useDispatch()
     const { onePost, pending } = useSelector((state) => state.allPosts)
@@ -49,9 +49,21 @@ const PostsDetails = () => {
                                     </div>
                                     <FaEllipsisV />
                                 </div>
-                                <p className='font14' >
-                                    {onePost.text}
-                                </p>
+                                < >
+                                    {
+                                        onePost.text.length >= 150 && !more ?
+                                            (
+                                                <>
+                                                    <p className='font14' >{onePost.text.slice(0, 100)}</p>
+                                                    <p onClick={() => setMore(true)} className='font12 pointer opacity05'>Read more...</p>
+                                                </>
+                                            )
+                                            :
+                                            (
+                                                <p className='font14'>{onePost.text}</p>
+                                            )
+                                    }
+                                </>
                                 <div className='interractionDiv'>
                                     <div className='interractionsDivSm'>
                                         <Likes />

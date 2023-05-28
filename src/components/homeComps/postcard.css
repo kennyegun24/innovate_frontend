@@ -61,3 +61,8 @@
     font-size: 12px;
     opacity: 0.5
 }
+
+.hover:hover {
+    opacity: 0.5;
+    transition: all 0.3s ease-in-out;
+}
