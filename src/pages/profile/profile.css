@@ -34,7 +34,8 @@
     color: #fff;
     padding: 0.5rem 2rem;
     border: none;
-    border-radius: 12px
+    border-radius: 12px;
+    text-decoration: none
 }
 
 .profileUserNameProfessionDetailsDiv {

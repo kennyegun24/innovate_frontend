@@ -5,6 +5,7 @@ import RightNavBar from '../../components/homepage/RightNavBar'
 import NewJob from '../../components/newJob'
 import { useDispatch } from 'react-redux'
 import { getPosts } from '../../redux/posts/postSlice'
+import './homepage.css'
 
 const Homepage = () => {
     const dispatch = useDispatch()
@@ -12,14 +13,14 @@ const Homepage = () => {
         dispatch(getPosts())
     })
     return (
-        <div style={{ display: 'flex', padding: '1.5rem 1rem 0 1rem', background: '#2F3B50', justifyContent: 'space-between', height: '100%', }}>
+        <div className='homepageMainDiv flex darkBlue justify_between height100'>
             <div style={{ width: '22%' }} >
                 <LeftNavbar />
             </div>
-            <div style={{ width: '50%' }}>
+            <div className='width50' >
                 <MiddlePage />
             </div>
-            <div style={{ width: '22%', display: 'flex', flexDirection: 'column', gap: '2rem' }} >
+            <div className='flex column gap2rem' style={{ width: '22%' }} >
                 <RightNavBar />
                 <NewJob />
             </div>

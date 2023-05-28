@@ -3,10 +3,10 @@ import img from '../../images/noImage.png'
 
 const Workexperience = () => {
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <div style={{ width: '50%', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <div style={{ display: 'flex', gap: '0.5rem', background: '#202836', padding: '0.5rem', color: '#fff', borderRadius: '10px' }}>
-                    <img src={img} style={{ width: '2.5rem', height: '2.5rem', borderRadius: '50%' }} alt="" />
+        <div className='flex justify_between'>
+            <div className='width50 flex column gap1rem' >
+                <div className='flex gap05rem primaryColor padding05rem white borderRadius10px'>
+                    <img className='overViewImage' src={img} alt="" />
                     <div>
                         <h5 >Frontend Developer</h5>
                         <h6>DeCellar</h6>
@@ -15,8 +15,8 @@ const Workexperience = () => {
                     </div>
                 </div>
 
-                <div style={{ display: 'flex', gap: '0.5rem', background: '#202836', padding: '0.5rem', color: '#fff', borderRadius: '10px' }}>
-                    <img src={img} style={{ width: '2.5rem', height: '2.5rem', borderRadius: '50%' }} alt="" />
+                <div className='flex gap05rem primaryColor padding05rem white borderRadius10px'>
+                    <img className='overViewImage' src={img} alt="" />
                     <div>
                         <h5 >Frontend Developer</h5>
                         <h6>GaoTek</h6>
@@ -25,8 +25,8 @@ const Workexperience = () => {
                     </div>
                 </div>
 
-                <div style={{ display: 'flex', gap: '0.5rem', background: '#202836', padding: '0.5rem', color: '#fff', borderRadius: '10px' }}>
-                    <img src={img} style={{ width: '2.5rem', height: '2.5rem', borderRadius: '50%' }} alt="" />
+                <div className='flex gap05rem primaryColor padding05rem white borderRadius10px'>
+                    <img className='overViewImage' src={img} alt="" />
                     <div>
                         <h5 >Frontend Developer</h5>
                         <h6>Side Hustle</h6>
@@ -36,9 +36,9 @@ const Workexperience = () => {
                 </div>
             </div>
 
-            <div style={{ width: '45%', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <div style={{ height: 'fit-content', background: '#202836', padding: '1rem', color: '#fff', borderRadius: '10px', }}>
-                    <h5 style={{ textAlign: 'center' }}>Skills</h5>
+            <div style={{ width: '45%' }}>
+                <div className='flex gap1rem column primaryColor padding1rem white borderRadius10px'>
+                    <h5 className='textCenter'>Skills</h5>
                     <p className='opacity05 font12'>
                         1. Ruby on Rails
                         <br />

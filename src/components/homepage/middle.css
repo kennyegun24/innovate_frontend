@@ -1,8 +1,23 @@
-.middlePageDiv {
-    /* overflow-y: scroll; */
-    /* height: 100% */
+.suggestedPages {
+    border-radius: 12px;
+    background: #202836;
+    height: fit-content
 }
 
-.middlePageDiv::-webkit-scrollbar {
-    /* display: none; */
+.suggestedPageMainDiv {
+    border-bottom: 1px solid #111;
+    opacity: 0.5
+}
+
+.suggestedFriendsMainDiv {
+    background: #202836;
+    height: fit-content;
+    width: 80%;
+    border-radius: 12px;
+    overflow: hidden
+}
+
+.suggestedPageHeaderText {
+    border-bottom: 1px solid #111;
+    opacity: 0.5
 }

@@ -10,21 +10,21 @@ import Workexperience from '../../components/profile/Workexperience'
 const AboutOptions = () => {
     const [tab, setTab] = useState(0)
     return (
-        <div style={{ padding: '2rem 0', width: '90%', display: 'flex', justifyContent: 'space-between' }}>
-            <div style={{ width: '30%', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <h5 onClick={() => setTab(0)} style={{ display: 'flex', borderRadius: '6px', gap: '1rem', alignItems: 'center', background: tab === 0 ? '#5596E6' : 'transparent', padding: '0.5rem', color: '#fff' }}>
+        <div className='flex justify_between width90 editNavDivBg' >
+            <div className='flex column gap1rem editNavBtnDiv' >
+                <h5 className='flex gap1rem align_center editNavBtn' onClick={() => setTab(0)} style={{ background: tab === 0 ? '#5596E6' : 'transparent' }}>
                     <BsCheckCircle />
                     Overview
                 </h5>
-                <h5 onClick={() => setTab(1)} style={{ display: 'flex', borderRadius: '6px', gap: '1rem', alignItems: 'center', padding: '0.5rem', color: '#fff', background: tab === 1 ? '#5596E6' : 'transparent' }}>
+                <h5 className='flex gap1rem align_center editNavBtn' onClick={() => setTab(1)} style={{ background: tab === 1 ? '#5596E6' : 'transparent' }}>
                     <AiOutlineInfoCircle />
                     Personal Info
                 </h5>
-                <h5 onClick={() => setTab(2)} style={{ display: 'flex', borderRadius: '6px', gap: '1rem', alignItems: 'center', padding: '0.5rem', color: '#fff', background: tab === 2 ? '#5596E6' : 'transparent' }}>
+                <h5 className='flex gap1rem align_center editNavBtn' onClick={() => setTab(2)} style={{ background: tab === 2 ? '#5596E6' : 'transparent' }}>
                     <SlGraduation />
                     Education
                 </h5>
-                <h5 onClick={() => setTab(3)} style={{ display: 'flex', borderRadius: '6px', gap: '1rem', alignItems: 'center', padding: '0.5rem', color: '#fff', background: tab === 3 ? '#5596E6' : 'transparent' }}>
+                <h5 className='flex gap1rem align_center editNavBtn' onClick={() => setTab(3)} style={{ background: tab === 3 ? '#5596E6' : 'transparent' }}>
                     <FaBriefcase />
                     Work Experience
                 </h5>

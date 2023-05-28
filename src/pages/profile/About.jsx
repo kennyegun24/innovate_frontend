@@ -5,7 +5,7 @@ import AboutOptions from './AboutOptions'
 
 const About = () => {
     return (
-        <div style={{ display: 'flex' }}>
+        <div className='flex'>
             <div style={{ width: '25%' }}>
                 <ProfileNav />
             </div>

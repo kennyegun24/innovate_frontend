@@ -16,7 +16,7 @@ const ProfileHeader = () => {
                         Timeline
                     </button>
 
-                    <NavLink className='profileTmAbBtns' to='/about' style={{ color: '#fff', textDecoration: 'none' }} >
+                    <NavLink className='profileTmAbBtns' to='/about' >
                         About
                     </NavLink>
                 </div>
@@ -30,7 +30,7 @@ const ProfileHeader = () => {
                 </div>
 
                 <div className='profileFirstBtnsDiv'>
-                    <NavLink className='profileTmAbBtns' to='/friends' style={{ color: '#fff', textDecoration: 'none' }} >
+                    <NavLink className='profileTmAbBtns' to='/friends' >
                         Friends
                     </NavLink>
 
@@ -45,10 +45,10 @@ const ProfileHeader = () => {
                     <h2>7.4K </h2>
                     <p className='opacity05'>Followers</p>
                 </div>
-                <button className='profileEditProfileButton'>
+                <NavLink className='profileTmAbBtns' to='/edit_profile' >
                     <AiOutlineEdit />
                     Edit Profile
-                </button>
+                </NavLink>
             </div>
         </>
     )

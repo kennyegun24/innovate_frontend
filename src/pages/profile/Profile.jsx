@@ -22,7 +22,7 @@ const UserProfile = () => {
                         <div className='profilePostsHeaderDiv'>
                             <h4 className='font16 weight500'>Posts</h4>
 
-                            <div style={{ display: 'flex', gap: '1rem' }}>
+                            <div className='flex gap1rem'>
                                 <button className='profilePostsButton'>Recent</button>
                                 <button className='profilePostsButton'>Popular</button>
                             </div>

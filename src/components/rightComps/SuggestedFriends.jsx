@@ -5,6 +5,7 @@ import image2 from '../../images/noImage.png'
 import image3 from '../../images/screen-0.jpg'
 import image4 from '../../images/screen-3.jpg'
 import { FaBookmark, FaTag, FaUserPlus } from 'react-icons/fa'
+import './style.css'
 
 const SuggestedFriends = () => {
     const data = [
@@ -38,12 +39,12 @@ const SuggestedFriends = () => {
         <>
             {
                 data.map((each) => (
-                    <div style={{ color: '#fff', borderBottom: '1px solid #d8d6d6', padding: '1rem 0.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <div className='white flex align_center justify_between suggestedFriendsPagesMainDiv' style={{}}>
+                        <div className='flex align_center gap05rem'>
                             <img src={each.image} className='postUpdateFormImage' alt="" />
                             <div>
                                 <p className='font14 weight700'>{each.name}</p>
-                                <p className='font12' style={{ opacity: '0.5' }}>{each.profession}</p>
+                                <p className='font12 opacity05'>{each.profession}</p>
                             </div>
                         </div>
                         <FaUserPlus />
