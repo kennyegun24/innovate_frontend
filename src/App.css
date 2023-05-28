@@ -39,6 +39,10 @@
   cursor: pointer;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 /* --------Font sizes------- */
 
 .font12 {

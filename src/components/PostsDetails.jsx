@@ -8,9 +8,12 @@ import Likes from './interractions/Likes'
 import moment from 'moment'
 import PostComments from './comments/Comments'
 import PostDetailsLoader from './loadingAnimation/PostDetailsLoader'
+import ImagePreview from './postimageshow/ImagePreview'
 
 const PostsDetails = () => {
     const [more, setMore] = useState(false)
+    const [preview, setPreview] = useState(false)
+    const [modal, setModal] = useState({})
     const { pathname } = useLocation()
     const dispatch = useDispatch()
     const { onePost, pending } = useSelector((state) => state.allPosts)
@@ -22,10 +25,20 @@ const PostsDetails = () => {
         dispatch(getPost(getId))
     }, [])
 
+    useEffect(() => {
+        if (preview) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
+    }, [preview]);
+
     const formatDate = onePost.created_at
     const formattedDate = moment(formatDate).fromNow()
     return (
         <div style={{ background: '#2F3B50', minHeight: '90vh', gap: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0.1rem 1rem 1.5rem 1rem', }}>
+
+            {preview && <ImagePreview img={modal.image} creator={modal.author} text={modal.text} setPreview={setPreview} />}
             {
                 pending ?
                     (
@@ -37,7 +50,7 @@ const PostsDetails = () => {
 
                             <div style={{ width: '45%', borderBottomLeftRadius: '0', borderBottomRightRadius: '0' }} className='postCardDiv'>
                                 {onePost.image && <div className='postImageDiv'>
-                                    <img className='postImage' src={onePost.image} alt="" />
+                                    <img className='postImage pointer' onClick={() => { setPreview(true); setModal({ text: onePost.text, image: onePost.image, author: onePost.creator_name }) }} src={onePost.image} alt="" />
                                 </div>}
                                 <div className='flxCnterBtwn'>
                                     <div className='postUserInfo'>
@@ -51,7 +64,7 @@ const PostsDetails = () => {
                                 </div>
                                 < >
                                     {
-                                        onePost.text.length >= 150 && !more ?
+                                        onePost?.text?.length >= 150 && !more ?
                                             (
                                                 <>
                                                     <p className='font14' >{onePost.text.slice(0, 100)}</p>

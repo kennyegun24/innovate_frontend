@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 
-const LazyImage = ({ image }) => {
+const LazyImage = ({ image, setPreview, setModal }) => {
     const [view, setView] = useState(false)
     let ref = useRef()
 
@@ -22,8 +22,14 @@ const LazyImage = ({ image }) => {
             observer.disconnect()
         }
     }, [])
+
+    const showModal = (image) => {
+        setPreview(true);
+        // setModal(image)
+    }
+
     return view ? (
-        <img className='postImage' src={image} alt="" />
+        <img onClick={() => showModal(image)} className='postImage pointer' src={image} alt="" />
     ) : (
         <img ref={ref} className='postImage' style={{ background: '#111' }} alt="" />
     )

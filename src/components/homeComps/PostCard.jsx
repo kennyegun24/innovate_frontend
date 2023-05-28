@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import image5 from '../../images/screen-3.jpg'
 import { FaShare, FaEllipsisV } from 'react-icons/fa'
 import Likes from '../interractions/Likes'
@@ -9,6 +9,7 @@ import moment from 'moment'
 import { useNavigate } from 'react-router-dom';
 import PostsLoader from '../loadingAnimation/PostsLoader'
 import LazyImage from '../lazyimage/LazyImage'
+import ImagePreview from '../postimageshow/ImagePreview'
 
 const PostCard = () => {
 
@@ -21,7 +22,9 @@ const PostCard = () => {
             return [];
         }
     )
-    console.log(toggle)
+
+    const [preview, setPreview] = useState(false)
+    const [modal, setModal] = useState({})
 
     const navigate = useNavigate()
 
@@ -48,6 +51,18 @@ const PostCard = () => {
         )
     }
 
+    const showModal = () => {
+
+    }
+    // console.log(modal)
+    useEffect(() => {
+        if (preview) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
+    }, [preview]);
+
     return (
         <>
             {
@@ -58,59 +73,63 @@ const PostCard = () => {
                         </div>
                     )
                     :
-                    (<>
-                        {allPosts.map((each, index) => {
-                            const {
-                                creator_name,
-                                creator_image,
-                                likes_count,
-                                comments_count,
-                                text,
-                                image,
-                                created_at
-                            } = each
-                            const formatDate = created_at
-                            const formattedDate = moment(formatDate).fromNow()
-                            return (
-                                <div className='postCardDiv'>
-                                    <div className='flxCnterBtwn'>
-                                        <div className='postUserInfo'>
-                                            <img src={creator_image} className='postUpdateFormImage' alt="" />
-                                            <div>
-                                                <p className='font14 weight700'  >{creator_name}</p>
-                                                <p className='font12 opacity05' >{formattedDate}</p>
+                    (
+                        <>
+                            {preview && <ImagePreview img={modal.image} creator={modal.author} text={modal.text} setPreview={setPreview} />}
+                            {allPosts.map((each, index) => {
+                                const {
+                                    creator_name,
+                                    creator_image,
+                                    likes_count,
+                                    comments_count,
+                                    text,
+                                    image,
+                                    created_at
+                                } = each
+                                const formatDate = created_at
+                                const formattedDate = moment(formatDate).fromNow()
+                                return (
+                                    <div className='postCardDiv'>
+                                        <div className='flxCnterBtwn'>
+                                            <div className='postUserInfo'>
+                                                <img src={creator_image} className='postUpdateFormImage' alt="" />
+                                                <div>
+                                                    <p className='font14 weight700'  >{creator_name}</p>
+                                                    <p className='font12 opacity05' >{formattedDate}</p>
+                                                </div>
+                                            </div>
+                                            <FaEllipsisV />
+                                        </div>
+                                        <div className='font14' >
+                                            {text && !toggle[index] && text.length >= 150 ? (
+                                                <>
+                                                    <p className='font14 pointer hover' onClick={() => postDetails(each)}>{text.slice(0, 100)}...</p>
+                                                    <ReadMore index={index} />
+                                                </>
+                                            ) : (
+                                                <p className='font14 pointer hover' onClick={() => postDetails(each)}>{text}</p>
+                                            )}
+                                        </div>
+                                        {
+                                            image && <div className='postImageDiv' onClick={() => setModal({ image: image, author: creator_name, text: text })}>
+                                                <LazyImage image={image} setPreview={setPreview} />
+                                            </div>
+                                        }
+                                        <div className='interractionDiv'>
+                                            <div className='interractionsDivSm'>
+                                                <Likes />
+                                                <FaShare />
+                                                <Comments />
+                                            </div>
+                                            <div className='interractionsDivSm'>
+                                                <p className='interractionsText'>{comments_count} comments.</p>
+                                                <p className='interractionsText'>{likes_count} likes.</p>
                                             </div>
                                         </div>
-                                        <FaEllipsisV />
                                     </div>
-                                    <div className='font14' >
-                                        {text && !toggle[index] && text.length >= 150 ? (
-                                            <>
-                                                <p className='font14 pointer hover' onClick={() => postDetails(each)}>{text.slice(0, 100)}...</p>
-                                                <ReadMore index={index} />
-                                            </>
-                                        ) : (
-                                            <p className='font14 pointer hover' onClick={() => postDetails(each)}>{text}</p>
-                                        )}
-                                    </div>
-                                    {image && <div className='postImageDiv'>
-                                        <LazyImage image={image} />
-                                    </div>}
-                                    <div className='interractionDiv'>
-                                        <div className='interractionsDivSm'>
-                                            <Likes />
-                                            <FaShare />
-                                            <Comments />
-                                        </div>
-                                        <div className='interractionsDivSm'>
-                                            <p className='interractionsText'>{comments_count} comments.</p>
-                                            <p className='interractionsText'>{likes_count} likes.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </>
+                                )
+                            })}
+                        </>
                     )}
         </>
     )
