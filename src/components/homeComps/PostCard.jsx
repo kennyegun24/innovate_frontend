@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import image5 from '../../images/screen-3.jpg'
 import { FaShare, FaEllipsisV } from 'react-icons/fa'
 import Likes from '../interractions/Likes'
@@ -28,10 +28,12 @@ const PostCard = () => {
 
     const navigate = useNavigate()
 
-    const postDetails = (params) => {
-        console.log(params)
-        navigate(`/post_details/${params.id}`)
-    }
+    const postDetails = useCallback(
+        (post) => {
+            navigate(`/post_details/${post.id}`);
+        },
+        [navigate]
+    );
 
     const toggleMore = (index) => {
         setToggle((previousState) => {
@@ -45,11 +47,11 @@ const PostCard = () => {
         })
     }
 
-    const ReadMore = ({ index }) => {
+    const ReadMore = React.memo(({ index }) => {
         return (
             <p className='font12 opacity05 pointer' onClick={() => toggleMore(index)}>Read more... </p>
         )
-    }
+    })
 
     const showModal = () => {
 

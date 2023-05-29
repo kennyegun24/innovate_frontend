@@ -3,8 +3,10 @@ import vic from '../../images/kenny.png'
 import image from '../../images/screen-0.jpg'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const ProfileHeader = () => {
+    const { userDetails, currentUser } = useSelector((state) => state.user)
     return (
         <>
             <img className='profileCoverImage' src={image} alt="" />
@@ -22,10 +24,13 @@ const ProfileHeader = () => {
                 </div>
 
                 <div className='profileUserNameProfessionDetailsDiv'>
-                    <img className='profileUserImage' src={vic} alt="" />
+                    <img className='profileUserImage' src={userDetails?.image} alt="" />
                     <div className='profileUserName'>
-                        <h2>Kenny Egun</h2>
-                        <p className='opacity05'>Software Developer</p>
+                        <h2>{userDetails?.name}</h2>
+                        {
+                            userDetails?.profession &&
+                            <p className='opacity05'>{userDetails?.profession}</p>
+                        }
                     </div>
                 </div>
 
@@ -54,4 +59,4 @@ const ProfileHeader = () => {
     )
 }
 
-export default ProfileHeader
+export default ProfileHeader;

@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import TopNav from './components/topNav/TopNav';
 import Login from './pages/auth/Login';
@@ -9,18 +9,23 @@ import About from './pages/profile/About';
 import PostsDetails from './components/PostsDetails';
 import Friends from './pages/friends/Friends';
 import EditProfile from './pages/editProfile/EditProfile';
+import { useSelector } from 'react-redux';
+import EditWorkExperience from './components/addWork/AddWorkExperience';
 
 function App() {
+  const { currentUser } = useSelector((state) => state.user)
   return (
     <div>
       <BrowserRouter>
         <TopNav />
         <Routes>
           <Route path='/' element={<Homepage />} />
-          <Route path='/userprofile' element={<UserProfile />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/friends' element={<Friends />} />
-          <Route path='/edit_profile' element={<EditProfile />} />
+          <Route path='/login' element={!currentUser ? <Login /> : <Navigate to='/' />} />
+          <Route path='/userprofile' element={!currentUser ? <Navigate to='/login' /> : <UserProfile />} />
+          <Route path='/about' element={!currentUser ? <Navigate to='/login' /> : <About />} />
+          <Route path='/friends' element={!currentUser ? <Navigate to='/login' /> : <Friends />} />
+          <Route path='/edit_profile' element={!currentUser ? <Navigate to='/login' /> : <EditProfile />} />
+          <Route path='/add_experience' element={!currentUser ? <Navigate to='/login' /> : <EditWorkExperience />} />
           <Route path='/post_details/:id' element={<PostsDetails />} />
         </Routes>
       </BrowserRouter>

@@ -1,8 +1,10 @@
 import React from 'react'
 import { FaBlog, FaEllipsisV, FaGraduationCap, FaLocationArrow, FaUsers } from 'react-icons/fa'
 import './basicInfo.css'
+import { useSelector } from 'react-redux'
 
 const BasicInfo = () => {
+    const { userDetails } = useSelector((state) => state.user)
     return (
         <div className='basicProfileInfo'>
             <div className='basicProfileTitleDiv'>
@@ -11,21 +13,30 @@ const BasicInfo = () => {
             </div>
 
             <div className='basicProfileInfoDiv'>
-                <div className='basicProfileInfoDivSm'>
-                    <div>
-                        <h5>Studied at</h5>
-                        <p className='opacity05 font12'>Microverse school of software development</p>
+                {
+                    userDetails?.school
+                    &&
+                    <div className='basicProfileInfoDivSm'>
+                        <div>
+                            <h5>Studied at</h5>
+                            <p className='opacity05 font12'>{userDetails?.school}</p>
+                        </div>
+                        <FaGraduationCap />
                     </div>
-                    <FaGraduationCap />
-                </div>
-                <hr />
-                <div className='basicProfileInfoDivSm'>
-                    <div>
-                        <h5>Lives in</h5>
-                        <p className='opacity05 font12'>Newyork City</p>
-                    </div>
-                    <FaLocationArrow />
-                </div>
+                }
+                {
+                    userDetails?.location &&
+                    <>
+                        <hr />
+                        <div className='basicProfileInfoDivSm'>
+                            <div>
+                                <h5>Lives in</h5>
+                                <p className='opacity05 font12'>{userDetails?.location}</p>
+                            </div>
+                            <FaLocationArrow />
+                        </div>
+                    </>
+                }
                 <hr />
                 <div className='basicProfileInfoDivSm'>
                     <div>
@@ -38,7 +49,7 @@ const BasicInfo = () => {
                 <div className='basicProfileInfoDivSm'>
                     <div>
                         <h5>Amount of Posts</h5>
-                        <p className='opacity05 font12'>12 posts</p>
+                        <p className='opacity05 font12'>{userDetails?.posts_count}</p>
                     </div>
                     <FaBlog />
                 </div>
