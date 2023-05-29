@@ -1,39 +1,19 @@
 import React from 'react'
-import img from '../../images/noImage.png'
+import { useSelector } from 'react-redux'
+import MemoizedWorkItem from '../workexp/WorkExpComp'
 
 const Workexperience = () => {
+    const { workExperience } = useSelector((state) => state.workExperience)
+
     return (
         <div className='flex justify_between'>
             <div className='width50 flex column gap1rem' >
-                <div className='flex gap05rem primaryColor padding05rem white borderRadius10px'>
-                    <img className='overViewImage' src={img} alt="" />
-                    <div>
-                        <h5 >Frontend Developer</h5>
-                        <h6>DeCellar</h6>
-                        <p className='font12 opacity05'>Italy</p>
-                        <p className='font12 opacity05'>May - Present</p>
-                    </div>
-                </div>
+                {
+                    workExperience.map((work) => (
 
-                <div className='flex gap05rem primaryColor padding05rem white borderRadius10px'>
-                    <img className='overViewImage' src={img} alt="" />
-                    <div>
-                        <h5 >Frontend Developer</h5>
-                        <h6>GaoTek</h6>
-                        <p className='font12 opacity05'>United States</p>
-                        <p className='font12 opacity05'>April - Present</p>
-                    </div>
-                </div>
-
-                <div className='flex gap05rem primaryColor padding05rem white borderRadius10px'>
-                    <img className='overViewImage' src={img} alt="" />
-                    <div>
-                        <h5 >Frontend Developer</h5>
-                        <h6>Side Hustle</h6>
-                        <p className='font12 opacity05'>Nigeria</p>
-                        <p className='font12 opacity05'>February - April</p>
-                    </div>
-                </div>
+                        <MemoizedWorkItem key={work.id} work={work} />
+                    ))
+                }
             </div>
 
             <div style={{ width: '45%' }}>
