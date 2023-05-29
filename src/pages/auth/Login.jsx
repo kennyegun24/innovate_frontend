@@ -1,7 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import vic from '../../images/noImage.png'
+import { useDispatch } from 'react-redux'
+import { loginFailure } from '../../redux/user/userSlice'
+import { login } from '../../redux/apiCalls'
 
 const Login = () => {
+
+    const dispatch = useDispatch()
+    const [email, setEmail] = useState(null)
+    const [password, setPassword] = useState(null)
+
+    const loginUser = async (e) => {
+        e.preventDefault()
+        try {
+            await login(dispatch, {
+                email,
+                password
+            })
+        } catch (error) {
+            dispatch(loginFailure)
+        }
+    }
     return (
         <div className='authDiv' >
             <div className='authDivSm'>
@@ -10,9 +29,9 @@ const Login = () => {
                         <img className='img' src={vic} alt="" />
                     </div>
                     <div className="formInputDiv">
-                        <input className='formInputs' type="text" placeholder='Enter your email address' />
-                        <input className='formInputs' type="text" placeholder='Choose your password' />
-                        <button className='formInputBtn'>Login</button>
+                        <input onChange={(e) => setEmail(e.target.value)} className='formInputs' type="text" placeholder='Enter your email address' />
+                        <input onChange={(e) => setPassword(e.target.value)} className='formInputs' type="text" placeholder='Choose your password' />
+                        <button className='formInputBtn' onClick={loginUser}>Login</button>
                         <p style={{ color: '#fff' }}>Forot your password?</p>
                     </div>
                 </form>
