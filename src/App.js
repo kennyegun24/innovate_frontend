@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import TopNav from './components/topNav/TopNav';
@@ -9,11 +10,19 @@ import About from './pages/profile/About';
 import PostsDetails from './components/PostsDetails';
 import Friends from './pages/friends/Friends';
 import EditProfile from './pages/editProfile/EditProfile';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import EditWorkExperience from './components/addWork/AddWorkExperience';
+import { getCurrentUserDetails } from './redux/user/userSlice';
 
 function App() {
   const { currentUser } = useSelector((state) => state.user)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getCurrentUserDetails());
+  }, []);
+
   return (
     <div>
       <BrowserRouter>

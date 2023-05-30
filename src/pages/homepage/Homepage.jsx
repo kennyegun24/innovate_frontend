@@ -6,7 +6,6 @@ import NewJob from '../../components/newJob'
 import { useDispatch } from 'react-redux'
 import { getPosts } from '../../redux/posts/postSlice'
 import './homepage.css'
-import { getCurrentUserDetails } from '../../redux/user/userSlice'
 
 const Homepage = () => {
     const dispatch = useDispatch()
@@ -14,9 +13,6 @@ const Homepage = () => {
         dispatch(getPosts());
     }, []);
 
-    useEffect(() => {
-        dispatch(getCurrentUserDetails());
-    }, []);
     return (
         <div className='homepageMainDiv flex darkBlue justify_between height100'>
             <div style={{ width: '22%' }} >
