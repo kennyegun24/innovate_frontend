@@ -52,10 +52,6 @@ const PostCard = () => {
             <p className='font12 opacity05 pointer' onClick={() => toggleMore(index)}>Read more... </p>
         )
     })
-
-    const showModal = () => {
-
-    }
     // console.log(modal)
     useEffect(() => {
         if (preview) {
@@ -78,7 +74,7 @@ const PostCard = () => {
                     (
                         <>
                             {preview && <ImagePreview img={modal.image} creator={modal.author} text={modal.text} setPreview={setPreview} />}
-                            {allPosts.map((each, index) => {
+                            {allPosts?.map((each, index) => {
                                 const {
                                     creator_name,
                                     creator_image,
@@ -86,12 +82,14 @@ const PostCard = () => {
                                     comments_count,
                                     text,
                                     image,
-                                    created_at
+                                    created_at,
+                                    id,
+                                    liked
                                 } = each
                                 const formatDate = created_at
                                 const formattedDate = moment(formatDate).fromNow()
                                 return (
-                                    <div className='postCardDiv'>
+                                    <div className='postCardDiv' key={index}>
                                         <div className='flxCnterBtwn'>
                                             <div className='postUserInfo'>
                                                 <img src={creator_image} className='postUpdateFormImage' alt="" />
@@ -119,13 +117,12 @@ const PostCard = () => {
                                         }
                                         <div className='interractionDiv'>
                                             <div className='interractionsDivSm'>
-                                                <Likes />
+                                                <Likes count={likes_count} liked={liked} postId={id} />
                                                 <FaShare />
                                                 <Comments />
                                             </div>
                                             <div className='interractionsDivSm'>
                                                 <p className='interractionsText'>{comments_count} comments.</p>
-                                                <p className='interractionsText'>{likes_count} likes.</p>
                                             </div>
                                         </div>
                                     </div>
