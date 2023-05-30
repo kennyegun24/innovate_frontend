@@ -7,6 +7,10 @@
     background: #151A23;
     color: #fff;
     resize: none;
+    border: none;
+    outline: none;
+    padding: var(--05rem);
+    border-radius: var(--05rem);
 }
 
 .editProfileImage {
