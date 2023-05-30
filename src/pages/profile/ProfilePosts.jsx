@@ -18,8 +18,7 @@ const ProfilePosts = () => {
             post: 'He went to the hospital to get bread and beans, but unfortunately for him, he found out that the orange behide the mango tree was bringing forth some bananas which he needed to heal the sick catfish behind the volcanic rock.',
             postImage: vic,
             likes: '2274666 likes.',
-            comment: '23298 comments.',
-            id: 1,
+            comment: '23298 comments.'
         },
         {
             Image: image1,
@@ -28,8 +27,7 @@ const ProfilePosts = () => {
             post: 'He went to the hospital to get bread and beans, but unfortunately for him, he found out that the orange behide the mango tree was bringing forth some bananas which he needed to heal the sick catfish behind the volcanic rock.',
             postImage: image1,
             likes: '78 likes.',
-            comment: '24 comments.',
-            id: 2,
+            comment: '24 comments.'
         },
         {
             Image: image2,
@@ -38,8 +36,7 @@ const ProfilePosts = () => {
             post: 'He went to the hospital to get bread and beans, but unfortunately for him, he found out that the orange behide the mango tree was bringing forth some bananas which he needed to heal the sick catfish behind the volcanic rock.',
             postImage: image2,
             likes: '2242424 likes.',
-            comment: '224 comments.',
-            id: 3,
+            comment: '224 comments.'
         },
         {
             Image: image3,
@@ -48,8 +45,7 @@ const ProfilePosts = () => {
             post: 'He went to the hospital to get bread and beans, but unfortunately for him, he found out that the orange behide the mango tree was bringing forth some bananas which he needed to heal the sick catfish behind the volcanic rock.',
             postImage: image3,
             likes: '232323227 likes.',
-            comment: '245353 comments.',
-            id: 4,
+            comment: '245353 comments.'
         },
         {
             Image: image4,
@@ -58,8 +54,7 @@ const ProfilePosts = () => {
             post: 'He went to the hospital to get bread and beans, but unfortunately for him, he found out that the orange behide the mango tree was bringing forth some bananas which he needed to heal the sick catfish behind the volcanic rock.',
             postImage: image4,
             likes: '23 likes.',
-            comment: '2 comments.',
-            id: 5,
+            comment: '2 comments.'
         },
         {
             Image: image5,
@@ -68,15 +63,14 @@ const ProfilePosts = () => {
             post: 'He went to the hospital to get bread and beans, but unfortunately for him, he found out that the orange behide the mango tree was bringing forth some bananas which he needed to heal the sick catfish behind the volcanic rock.',
             postImage: image5,
             likes: '232 likes.',
-            comment: '25 comments.',
-            id: 6,
+            comment: '25 comments.'
         },
     ]
     return (
         <div style={{ width: '80%' }}>
 
             {data.map((each) => (
-                <div className='postCardDiv' key={each.id}>
+                <div className='postCardDiv'>
                     <div className='flxCnterBtwn'>
                         <div className='postUserInfo'>
                             <img src={each.Image} className='postUpdateFormImage' alt="" />
