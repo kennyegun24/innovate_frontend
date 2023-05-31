@@ -26,6 +26,17 @@ export const getPost = createAsyncThunk('posts/getOnePost', async (id) => {
     return data
 })
 
+export const getOnePostForAuthUser = createAsyncThunk('posts/getOnePostsForAuthUser', async ({ id, TOKEN }) => {
+
+    const userRequest = axios.create({
+        baseURL: BASE_URL,
+        headers: { 'Authorization': `Bearer ${TOKEN}` }
+    })
+    const res = await userRequest.get(`auth/post/${id}`)
+    delete res.headers
+    return res.data
+})
+
 export const makePost = async ({ text, TOKEN }) => {
     const userRequest = axios.create({
         baseURL: BASE_URL,
@@ -71,6 +82,15 @@ const getPostsSlice = createSlice({
                 isFulfilled.pending = true;
             })
             .addCase(getPost.fulfilled, (state, action) => {
+                const isFulfilled = state;
+                isFulfilled.pending = false;
+                isFulfilled.onePost = action.payload.data
+            })
+            .addCase(getOnePostForAuthUser.pending, (state, action) => {
+                const isFulfilled = state;
+                isFulfilled.pending = true;
+            })
+            .addCase(getOnePostForAuthUser.fulfilled, (state, action) => {
                 const isFulfilled = state;
                 isFulfilled.pending = false;
                 isFulfilled.onePost = action.payload.data
