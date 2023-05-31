@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { likeUnlikePost } from '../../redux/apiCalls'
 
 const Likes = ({ count, liked, postId }) => {
-  const { userDetails } = useSelector((state) => state.user)
+  const { currentUser } = useSelector((state) => state.user)
 
   const [isLike, setIsLike] = useState({ liked: liked, count: count })
 
@@ -13,7 +13,7 @@ const Likes = ({ count, liked, postId }) => {
       liked: !isLike.liked,
       count: isLike.liked ? isLike.count - 1 : isLike.count + 1
     })
-    likeUnlikePost(postId)
+    likeUnlikePost(postId, currentUser?.data)
   }
 
   return (

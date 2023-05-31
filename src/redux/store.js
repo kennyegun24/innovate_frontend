@@ -1,14 +1,40 @@
-import { configureStore } from '@reduxjs/toolkit'
-import getPostsSlice from "./posts/postSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import storage from 'redux-persist/lib/storage/session'; // Use session storage
+import getPostsSlice from './posts/postSlice';
 import userSlice from './user/userSlice';
-import workExpSlice from './workexperieence/workexperience'
+import workExpSlice from './workexperieence/workexperience';
+import {
+    persistStore,
+    persistReducer,
+    FLUSH,
+    REHYDRATE,
+    PAUSE,
+    PERSIST,
+    PURGE,
+    REGISTER
+} from 'redux-persist';
+
+const persistConfig = {
+    key: 'root',
+    storage,
+};
+
+const persistedUserReducer = persistReducer(persistConfig, userSlice);
 
 const store = configureStore({
     reducer: {
-        user: userSlice,
+        user: persistedUserReducer,
         allPosts: getPostsSlice,
-        workExperience: workExpSlice
-    }
-})
+        workExperience: workExpSlice,
+    },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            },
+        }),
+});
 
-export default store;
+const persistor = persistStore(store);
+
+export { store, persistor };

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import LeftNavbar from '../../components/homepage/LeftNavbar'
 import MiddlePage from '../../components/homepage/MiddlePage'
 import RightNavBar from '../../components/homepage/RightNavBar'
@@ -10,11 +10,22 @@ import { useSelector } from 'react-redux'
 
 const Homepage = () => {
     const { currentUser } = useSelector((state) => state.user)
+    const { allPosts, pending, allPostsForAuthUser } = useSelector((state) => state.allPosts)
     const dispatch = useDispatch()
+
     useEffect(() => {
-        !currentUser && dispatch(getPosts());
-        currentUser && dispatch(getPostsForAuthUser())
+        if (!currentUser && allPosts.length <= 0) {
+            !currentUser && dispatch(getPosts());
+        }
     }, []);
+
+    useEffect(() => {
+        if (currentUser && allPostsForAuthUser.length <= 0) {
+            currentUser && dispatch(getPostsForAuthUser({
+                TOKEN: currentUser?.data
+            }))
+        }
+    }, [])
 
     return (
         <div className='homepageMainDiv flex darkBlue justify_between height100'>
@@ -32,4 +43,4 @@ const Homepage = () => {
     )
 }
 
-export default Homepage
+export default React.memo(Homepage);

@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { FaPlusCircle } from 'react-icons/fa'
 import { newWorkExperience } from '../../redux/apiCalls'
+import { useSelector } from 'react-redux'
 
 const AddWorkExp = () => {
 
     const [experience, setExperience] = useState({})
+    const { currentUser } = useSelector((state) => state.user)
 
     const handleForm = (e) => {
         setExperience({ ...experience, [e.target.name]: e.target.value })
@@ -12,7 +14,7 @@ const AddWorkExp = () => {
 
     const addExp = (e) => {
         e.preventDefault()
-        newWorkExperience(experience)
+        newWorkExperience(experience, currentUser?.data)
     }
     return (
         <div className='padding1rem marginBtm1rem flex justify_start width100' >

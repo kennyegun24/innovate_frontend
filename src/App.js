@@ -20,7 +20,7 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getCurrentUserDetails());
+    dispatch(getCurrentUserDetails(currentUser?.data));
   }, []);
 
   return (

@@ -2,9 +2,12 @@ import React, { useEffect, useRef, useState } from 'react'
 import vic from '../../images/vic.jpg'
 import { FaBell, FaCamera, FaCheck, FaCheckCircle, FaPen } from 'react-icons/fa'
 import './postUpdate.css'
+import { makePost } from '../../redux/posts/postSlice'
+import { useSelector } from 'react-redux'
 
 const PostUpdate = () => {
     const [postActive, setPostActive] = useState(false)
+    const { currentUser } = useSelector((state) => state.user)
 
     const textareaRef = useRef(null);
 
@@ -22,6 +25,13 @@ const PostUpdate = () => {
         };
     }, []);
 
+    const [text, setText] = useState('')
+
+    const submit = (e) => {
+        e.preventDefault()
+        makePost({ text, TOKEN: currentUser?.data })
+    }
+
     return (
         <div className='postUpdateDiv' >
             <div className='postUpdateDivSm' >
@@ -36,7 +46,7 @@ const PostUpdate = () => {
                 <div className='postUpdateFormDiv' >
                     <img className='postUpdateFormImage' src={vic} alt="" />
                     <form className='width100' >
-                        <textarea ref={textareaRef} onClick={() => setPostActive(true)} className='textarea' placeholder='Post something about you...' rows='7' />
+                        <textarea onChange={(e) => setText(e.target.value)} ref={textareaRef} onClick={() => setPostActive(true)} className='textarea' placeholder='Post something about you...' rows='7' />
                     </form>
                 </div>
                 <div className='postUpdateBottomNavDiv padding1rem' >
@@ -54,7 +64,7 @@ const PostUpdate = () => {
                             <p className='white'>Activity Feed</p>
                         </div>
                         <div className='postUpdateButtonNavDiv' >
-                            <button className='pointer postUpdateButton text_center' >Post</button>
+                            <button onClick={submit} className='pointer postUpdateButton text_center' >Post</button>
                         </div>
                     </>
                 }

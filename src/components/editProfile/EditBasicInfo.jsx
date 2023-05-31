@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { updateUserDetails } from '../../redux/apiCalls';
 
 const EditBasicInfo = () => {
-    const { userDetails } = useSelector((state) => state.user)
+    const { userDetails, currentUser } = useSelector((state) => state.user)
 
     const [formData, setFormData] = useState(userDetails)
 
@@ -15,11 +15,10 @@ const EditBasicInfo = () => {
         setForm({ ...form, [e.target.name]: e.target.value });
         setFormData({ ...formData, [e.target.name]: e.target.value });
     }
-    // console.log(form)
 
     const updateProfile = (e) => {
         e.preventDefault()
-        updateUserDetails(form)
+        updateUserDetails(form, currentUser?.data)
     }
 
     return (

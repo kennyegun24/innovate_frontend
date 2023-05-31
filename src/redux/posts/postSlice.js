@@ -7,16 +7,13 @@ export const getPosts = createAsyncThunk('posts/getPosts', async () => {
     return data
 })
 
-export const getPostsForAuthUser = createAsyncThunk('posts/getPostsForAuthUser', async () => {
-    // const res = await fetch('http://localhost:4000/api/v1/all/posts');
-    // const data = await res.json()
-    // return data
+const BASE_URL = 'http://localhost:4000/api/v1'
 
-    const BASE_URL = 'http://localhost:4000/api/v1'
+export const getPostsForAuthUser = createAsyncThunk('posts/getPostsForAuthUser', async ({ TOKEN }) => {
+
     const userRequest = axios.create({
         baseURL: BASE_URL,
-        headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxfQ.-dk89kbWGoJBfyDGHEBgZx6wCr-R9Yvi1VTF2XfMvCU' }
-        // headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3fQ.J68gi-mXfQxAe_Bw9JG0CSM_IcNa-fjqr4rIZjH1PSk' }
+        headers: { 'Authorization': `Bearer ${TOKEN}` }
     })
     const res = await userRequest.get('all/posts')
     delete res.headers
@@ -26,15 +23,25 @@ export const getPostsForAuthUser = createAsyncThunk('posts/getPostsForAuthUser',
 export const getPost = createAsyncThunk('posts/getOnePost', async (id) => {
     const res = await fetch(`http://localhost:4000/api/v1/posts/${id}`);
     const data = await res.json()
-    // console.log(data)
     return data
 })
+
+export const makePost = async ({ text, TOKEN }) => {
+    const userRequest = axios.create({
+        baseURL: BASE_URL,
+        headers: { 'Authorization': `Bearer ${TOKEN}` }
+    })
+    await userRequest.post('posts', {
+        text: text
+    })
+}
 
 const getPostsSlice = createSlice({
     name: 'allPosts',
     initialState: {
-        pending: true,
+        pending: null,
         allPosts: [],
+        allPostsForAuthUser: [],
         onePost: {}
     },
 
@@ -43,7 +50,7 @@ const getPostsSlice = createSlice({
         reducers
             .addCase(getPosts.pending, (state, action) => {
                 const isFulfilled = state;
-                isFulfilled.pending = true;
+                isFulfilled.pending = 'pending no auth user';
             })
             .addCase(getPosts.fulfilled, (state, action) => {
                 const isFulfilled = state;
@@ -52,12 +59,12 @@ const getPostsSlice = createSlice({
             })
             .addCase(getPostsForAuthUser.pending, (state, action) => {
                 const isFulfilled = state;
-                isFulfilled.pending = true;
+                isFulfilled.pending = 'pending and auth user';
             })
             .addCase(getPostsForAuthUser.fulfilled, (state, action) => {
                 const isFulfilled = state;
                 isFulfilled.pending = false;
-                isFulfilled.allPosts = action.payload.data
+                isFulfilled.allPostsForAuthUser = action.payload.data
             })
             .addCase(getPost.pending, (state, action) => {
                 const isFulfilled = state;

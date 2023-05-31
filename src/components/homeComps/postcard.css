@@ -73,3 +73,7 @@
     opacity: 0.5;
     transition: all 0.3s ease-in-out;
 }
+
+.line_breaks {
+    white-space: pre-line;
+}
