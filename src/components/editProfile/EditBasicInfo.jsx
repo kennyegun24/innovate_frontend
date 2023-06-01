@@ -18,7 +18,7 @@ const EditBasicInfo = () => {
 
     const updateProfile = (e) => {
         e.preventDefault()
-        updateUserDetails(form, currentUser?.data)
+        updateUserDetails(form, currentUser?.data?.token)
     }
 
     return (

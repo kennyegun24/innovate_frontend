@@ -26,7 +26,7 @@ const PostCard = () => {
       return [];
     }
   )
-
+  console.log(currentUser)
   const [preview, setPreview] = useState(false)
   const [modal, setModal] = useState({})
 
@@ -161,7 +161,7 @@ const PostCard = () => {
                       liked,
                       author_id
                     } = each
-                    // console.log(each)
+                    console.log(each)
                     const formatDate = created_at
                     const formattedDate = moment(formatDate).fromNow()
                     return (

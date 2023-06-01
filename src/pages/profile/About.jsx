@@ -9,7 +9,7 @@ const About = () => {
     const dispatch = useDispatch()
     const { currentUser } = useSelector((state) => state.user)
     useEffect(() => {
-        dispatch(getWorkExp(currentUser?.data))
+        dispatch(getWorkExp(currentUser?.data?.token))
     }, [])
     return (
         <div className='flex'>

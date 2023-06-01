@@ -29,7 +29,7 @@ const PostUpdate = () => {
 
     const submit = (e) => {
         e.preventDefault()
-        makePost({ text, TOKEN: currentUser?.data })
+        makePost({ text, TOKEN: currentUser?.data?.token })
     }
 
     return (

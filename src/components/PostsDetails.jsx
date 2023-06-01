@@ -25,7 +25,7 @@ const PostsDetails = () => {
   useEffect(() => {
     !currentUser && dispatch(getPost(getId))
     currentUser && dispatch(getOnePostForAuthUser({
-      TOKEN: currentUser?.data,
+      TOKEN: currentUser?.data?.token,
       id: getId
     }))
   }, [])

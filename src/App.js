@@ -20,7 +20,7 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    currentUser && dispatch(getCurrentUserDetails(currentUser?.data));
+    currentUser && dispatch(getCurrentUserDetails(currentUser?.data?.token));
   }, [currentUser]);
 
   return (

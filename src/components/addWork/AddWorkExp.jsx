@@ -14,7 +14,7 @@ const AddWorkExp = () => {
 
     const addExp = (e) => {
         e.preventDefault()
-        newWorkExperience(experience, currentUser?.data)
+        newWorkExperience(experience, currentUser?.data?.token)
     }
     return (
         <div className='padding1rem marginBtm1rem flex justify_start width100' >

@@ -17,7 +17,7 @@ const Likes = ({ count, liked, postId }) => {
       count: isLike.liked ? isLike.count - 1 : isLike.count + 1
     })
     setTrigger(true)
-    likeUnlikePost(postId, currentUser?.data)
+    likeUnlikePost(postId, currentUser?.data?.token)
   }
 
   useEffect(() => {

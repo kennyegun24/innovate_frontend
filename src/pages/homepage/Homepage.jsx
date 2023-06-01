@@ -22,7 +22,7 @@ const Homepage = () => {
     useEffect(() => {
         if (currentUser && allPostsForAuthUser.length <= 0) {
             currentUser && dispatch(getPostsForAuthUser({
-                TOKEN: currentUser?.data
+                TOKEN: currentUser?.data?.token
             }))
         }
     }, [])
