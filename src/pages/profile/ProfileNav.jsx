@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 const ProfileNav = () => {
   const { userDetails } = useSelector((state) => state.user)
   return (
-    <div style={{ background: '#151A23', height: '100%', padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+    <div style={{ width: '100%', background: '#151A23', height: '100%', padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <div style={{ color: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
         <img style={{ height: '4rem', width: '4rem', borderRadius: '50%' }} src={userDetails?.image} alt="" />
         <div>

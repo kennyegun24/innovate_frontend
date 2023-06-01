@@ -161,6 +161,7 @@ const PostCard = () => {
                       liked,
                       author_id
                     } = each
+                    // console.log(each)
                     const formatDate = created_at
                     const formattedDate = moment(formatDate).fromNow()
                     return (

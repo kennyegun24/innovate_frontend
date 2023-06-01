@@ -56,7 +56,33 @@ const getPostsSlice = createSlice({
         onePost: {}
     },
 
-    reducers: {},
+    reducers: {
+        getLikedStatus: (state, action) => {
+            const isLiked = action.payload.liked;
+            const count = action.payload.count
+            const id = action.payload.postId
+            // console.log(id)
+            // console.log(count)
+            // console.log(isLiked)
+            // state.allPostsForAuthUser = state.allPostsForAuthUser.map((post) => {
+            //     if (post.id === id) {
+            //         return {
+            //             ...post,
+            //             liked: isLiked,
+            //             likes_count: count
+            //         }
+            //     }
+            //     // console.log(post)
+            //     return post
+            // })
+            // return state
+            const post = state.allPostsForAuthUser.find((post) => post.id === id);
+            if (post) {
+                post.liked = isLiked;
+                post.likes_count = count;
+            }
+        }
+    },
     extraReducers(reducers) {
         reducers
             .addCase(getPosts.pending, (state, action) => {
@@ -98,4 +124,5 @@ const getPostsSlice = createSlice({
     }
 })
 
+export const { getLikedStatus } = getPostsSlice.actions;
 export default getPostsSlice.reducer

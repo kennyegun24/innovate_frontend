@@ -5,7 +5,9 @@ import ProfileNav from '../profile/ProfileNav';
 const EditProfile = () => {
     return (
         <div className='flex justify_end darkBlue height90vh' >
-            <ProfileNav />
+            <div style={{ width: '25%' }}>
+                <ProfileNav />
+            </div>
             <div className='padding1rem flex justify_start width100' >
                 <EditProfileNav />
             </div>
