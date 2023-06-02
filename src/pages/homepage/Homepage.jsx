@@ -14,18 +14,18 @@ const Homepage = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (!currentUser && allPosts.length <= 0) {
-            !currentUser && dispatch(getPosts());
+        if (!currentUser) {
+            allPosts.length <= 0 && dispatch(getPosts());
         }
-    }, []);
+    }, [currentUser]);
 
     useEffect(() => {
-        if (currentUser && allPostsForAuthUser.length <= 0) {
-            currentUser && dispatch(getPostsForAuthUser({
+        if (currentUser) {
+            allPostsForAuthUser.length <= 0 && dispatch(getPostsForAuthUser({
                 TOKEN: currentUser?.data?.token
             }))
         }
-    }, [])
+    }, [currentUser])
 
     return (
         <div className='homepageMainDiv flex darkBlue justify_between height100'>

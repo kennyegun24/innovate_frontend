@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import ken from '../../images/kenny.png'
 import { FaPlusCircle } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateUserDetails } from '../../redux/apiCalls';
 
 const EditBasicInfo = () => {
     const { userDetails, currentUser } = useSelector((state) => state.user)
 
     const [formData, setFormData] = useState(userDetails)
+
+    const dispatch = useDispatch()
 
     const [form, setForm] = useState({})
 
@@ -18,7 +20,7 @@ const EditBasicInfo = () => {
 
     const updateProfile = (e) => {
         e.preventDefault()
-        updateUserDetails(form, currentUser?.data?.token)
+        updateUserDetails(form, currentUser?.data?.token, dispatch)
     }
 
     return (
