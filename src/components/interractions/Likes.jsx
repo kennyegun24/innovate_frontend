@@ -28,7 +28,7 @@ const Likes = ({ count, liked, postId }) => {
 
   return (
     <div className='flex align_center gap05rem'>
-      <FaHeart style={{ color: isLike.liked ? 'red' : '#fff' }} className='pointer' onClick={like} />
+      <FaHeart style={{ color: isLike.liked ? 'red' : '#fff' }} className='pointer' onClick={currentUser && like} />
       <p className='interractionsText'>{isLike.count} likes.</p>
 
     </div>

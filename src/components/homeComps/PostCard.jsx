@@ -6,7 +6,7 @@ import Comments from '../interractions/Comments'
 import { useSelector } from 'react-redux'
 import './postcard.css'
 import moment from 'moment'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PostsLoader from '../loadingAnimation/PostsLoader'
 import LazyImage from '../lazyimage/LazyImage'
 import ImagePreview from '../postimageshow/ImagePreview'
@@ -161,14 +161,15 @@ const PostCard = () => {
                       liked,
                       author_id
                     } = each
-                    console.log(each)
                     const formatDate = created_at
                     const formattedDate = moment(formatDate).fromNow()
                     return (
                       <div className='postCardDiv' key={index}>
                         <div className='flxCnterBtwn'>
                           <div className='postUserInfo'>
-                            <img src={creator_image} className='postUpdateFormImage' alt="" />
+                            <Link to={currentUser?.data?.user_id === author_id ? '/userprofile' : '/'}>
+                              <img src={creator_image} className='postUpdateFormImage' alt="" />
+                            </Link>
                             <div>
                               <p className='font14 weight700'  >{creator_name}</p>
                               <p className='font12 opacity05' >{formattedDate}</p>
