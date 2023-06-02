@@ -10,7 +10,6 @@ export const getPosts = createAsyncThunk('posts/getPosts', async () => {
 const BASE_URL = 'http://localhost:4000/api/v1'
 
 export const getPostsForAuthUser = createAsyncThunk('posts/getPostsForAuthUser', async ({ TOKEN }) => {
-
     const userRequest = axios.create({
         baseURL: BASE_URL,
         headers: { 'Authorization': `Bearer ${TOKEN}` }
@@ -27,7 +26,6 @@ export const getPost = createAsyncThunk('posts/getOnePost', async (id) => {
 })
 
 export const getOnePostForAuthUser = createAsyncThunk('posts/getOnePostsForAuthUser', async ({ id, TOKEN }) => {
-
     const userRequest = axios.create({
         baseURL: BASE_URL,
         headers: { 'Authorization': `Bearer ${TOKEN}` }
@@ -37,24 +35,38 @@ export const getOnePostForAuthUser = createAsyncThunk('posts/getOnePostsForAuthU
     return res.data
 })
 
-export const makePost = async ({ text, TOKEN }) => {
-    const userRequest = axios.create({
-        baseURL: BASE_URL,
-        headers: { 'Authorization': `Bearer ${TOKEN}` }
-    })
-    await userRequest.post('posts', {
-        text: text
-    })
+export const makePost = async ({ text, TOKEN }, dispatch) => {
+    try {
+
+        const userRequest = axios.create({
+            baseURL: BASE_URL,
+            headers: { 'Authorization': `Bearer ${TOKEN}` }
+        })
+        await userRequest.post('posts', {
+            text: text
+        })
+    } catch (error) {
+        delete error.response
+        dispatch(getErrorStatus({
+            error: {
+                message: error.message,
+                code: error.code
+            }
+        }))
+    }
+}
+
+const initialState = {
+    pending: null,
+    allPosts: [],
+    allPostsForAuthUser: [],
+    onePost: {},
+    error: null
 }
 
 const getPostsSlice = createSlice({
     name: 'allPosts',
-    initialState: {
-        pending: null,
-        allPosts: [],
-        allPostsForAuthUser: [],
-        onePost: {}
-    },
+    initialState: initialState,
 
     reducers: {
         getLikedStatus: (state, action) => {
@@ -66,7 +78,11 @@ const getPostsSlice = createSlice({
                 post.liked = isLiked;
                 post.likes_count = count;
             }
-        }
+        },
+        getErrorStatus: (state, action) => {
+            state.error = action.payload.error
+        },
+        resetState: () => initialState
     },
     extraReducers(reducers) {
         reducers
@@ -79,6 +95,12 @@ const getPostsSlice = createSlice({
                 isFulfilled.pending = false;
                 isFulfilled.allPosts = action.payload.data
             })
+            .addCase(getPosts.rejected, (state, action) => {
+                const isFulfilled = state;
+                isFulfilled.pending = false;
+                isFulfilled.allPosts = []
+                isFulfilled.error = action.error
+            })
             .addCase(getPostsForAuthUser.pending, (state, action) => {
                 const isFulfilled = state;
                 isFulfilled.pending = 'pending and auth user';
@@ -87,6 +109,12 @@ const getPostsSlice = createSlice({
                 const isFulfilled = state;
                 isFulfilled.pending = false;
                 isFulfilled.allPostsForAuthUser = action.payload.data
+            })
+            .addCase(getPostsForAuthUser.rejected, (state, action) => {
+                const isFulfilled = state;
+                isFulfilled.pending = false;
+                isFulfilled.allPostsForAuthUser = []
+                isFulfilled.error = action.error
             })
             .addCase(getPost.pending, (state, action) => {
                 const isFulfilled = state;
@@ -97,6 +125,12 @@ const getPostsSlice = createSlice({
                 isFulfilled.pending = false;
                 isFulfilled.onePost = action.payload.data
             })
+            .addCase(getPost.rejected, (state, action) => {
+                const isFulfilled = state;
+                isFulfilled.pending = false;
+                isFulfilled.onePost = {};
+                isFulfilled.error = action.error
+            })
             .addCase(getOnePostForAuthUser.pending, (state, action) => {
                 const isFulfilled = state;
                 isFulfilled.pending = true;
@@ -106,8 +140,14 @@ const getPostsSlice = createSlice({
                 isFulfilled.pending = false;
                 isFulfilled.onePost = action.payload.data
             })
+            .addCase(getOnePostForAuthUser.rejected, (state, action) => {
+                const isFulfilled = state;
+                isFulfilled.pending = false;
+                isFulfilled.onePost = {};
+                isFulfilled.error = action.error
+            })
     }
 })
 
-export const { getLikedStatus } = getPostsSlice.actions;
+export const { getLikedStatus, getErrorStatus, resetState } = getPostsSlice.actions;
 export default getPostsSlice.reducer

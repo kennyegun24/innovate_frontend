@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, createAction } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage/session'; // Use session storage
 import getPostsSlice from './posts/postSlice';
 import userSlice from './user/userSlice';
@@ -18,6 +18,8 @@ const persistConfig = {
     key: 'root',
     storage,
 };
+export const resetAction = createAction('reset');
+
 
 const persistedUserReducer = persistReducer(persistConfig, userSlice);
 

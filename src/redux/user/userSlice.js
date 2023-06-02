@@ -12,15 +12,17 @@ export const getCurrentUserDetails = createAsyncThunk('etDetails/getCurrentUserD
     return res.data
 })
 
+const initialState = {
+    currentUser: null,
+    isFetching: true,
+    userDetails: {},
+    pending: false,
+    detailsError: null,
+}
+
 const userSlice = createSlice({
     name: 'user',
-    initialState: {
-        currentUser: null,
-        isFetching: true,
-        userDetails: {},
-        pending: false,
-        error: false
-    },
+    initialState: initialState,
     reducers: {
         loginStart: (state) => {
             state.isFetching = true
@@ -31,8 +33,15 @@ const userSlice = createSlice({
         },
         loginFailure: (state) => {
             state.isFetching = false
-            state.error = true
-        }
+            state.detailsError = true
+        },
+        dispatchUserDetails: (state, action) => {
+            state.userDetails = action.payload
+        },
+        getUserErrorStatus: (state, action) => {
+            state.detailsError = action.payload.error
+        },
+        resetUserDetails: () => initialState
     },
     extraReducers(reduce) {
         reduce
@@ -46,8 +55,13 @@ const userSlice = createSlice({
                 isFulfilled.pending = false
                 isFulfilled.userDetails = action.payload.data
             })
+            .addCase(getCurrentUserDetails.rejected, (state, action) => {
+                const isFulfilled = state
+                isFulfilled.pending = false
+                isFulfilled.detailsError = action.error
+            })
     }
 })
 
-export const { loginStart, loginSuccess, loginFailure } = userSlice.actions;
+export const { loginStart, loginSuccess, loginFailure, dispatchUserDetails, resetUserDetails, getUserErrorStatus } = userSlice.actions;
 export default userSlice.reducer;
