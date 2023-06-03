@@ -31,42 +31,46 @@ const PostUpdate = () => {
   const submit = async (e) => {
     setProgress(true)
     e.preventDefault()
-    const file = selectedImage;
-    const uploadPreset = process.env.CLOUDINARY_UPLOAD_PRESET
-    const cloud_name = process.env.CLOUDINARY_CLOUD_NAME
 
-    const maxWidth = 800;
-    const maxHeight = 800;
-    const quality = 75;
-    const fileType = 'image/jpeg';
+    if (selectedImage) {
 
-    Resizer.imageFileResizer(
-      file,
-      maxWidth,
-      maxHeight,
-      fileType,
-      quality,
-      0,
-      async (resizedImage) => {
-        const formData = new FormData();
-        formData.append('file', resizedImage);
-        formData.append('upload_preset', uploadPreset)
+      const file = selectedImage;
+      // const uploadPreset = process.env.CLOUDINARY_UPLOAD_PRESET
+      const uploadPreset = 'ml_default'
+      // const cloud_name = process.env.CLOUDINARY_CLOUD_NAME
+      const cloud_name = 'drfqge33t'
 
-        try {
-          const postCloudinary = await axios.post(`https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`, formData)
-          const imageUrl = postCloudinary.data.secure_url;
-          if (imageUrl) {
+      const maxWidth = 800;
+      const maxHeight = 800;
+      const quality = 75;
+      const fileType = 'image/jpeg';
+
+      Resizer.imageFileResizer(
+        file,
+        maxWidth,
+        maxHeight,
+        fileType,
+        quality,
+        0,
+        async (resizedImage) => {
+          const formData = new FormData();
+          formData.append('file', resizedImage);
+          formData.append('upload_preset', uploadPreset)
+
+          try {
+            const postCloudinary = await axios.post(`https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`, formData)
+            const imageUrl = postCloudinary.data.secure_url;
             await makePost({ text, imageUrl, TOKEN: currentUser?.data?.token }, dispatch)
-          } else {
-            await makePost({ text, TOKEN: currentUser?.data?.token }, dispatch)
+            setProgress(false)
+          } catch (error) {
+            console.error('Error uploading image to Cloudinary:', error);
           }
-          setProgress(false)
-        } catch (error) {
-          console.error('Error uploading image to Cloudinary:', error);
-        }
-      },
-      'base64'
-    );
+        },
+        'base64'
+      );
+    } else {
+      makePost({ text, TOKEN: currentUser?.data?.token }, dispatch)
+    }
   }
 
   return (
