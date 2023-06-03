@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// Function to fetch posts for unauthentuicated users
 export const getPosts = createAsyncThunk('posts/getPosts', async () => {
   const res = await fetch('http://localhost:4000/api/v1/posts');
   const data = await res.json()
@@ -9,6 +10,7 @@ export const getPosts = createAsyncThunk('posts/getPosts', async () => {
 
 const BASE_URL = 'http://localhost:4000/api/v1'
 
+// Function to fetch posts for thentuicated users
 export const getPostsForAuthUser = createAsyncThunk('posts/getPostsForAuthUser', async ({ TOKEN }) => {
   const userRequest = axios.create({
     baseURL: BASE_URL,
@@ -19,12 +21,14 @@ export const getPostsForAuthUser = createAsyncThunk('posts/getPostsForAuthUser',
   return res.data
 })
 
+// Function to fetch one post for unauthentuicated users
 export const getPost = createAsyncThunk('posts/getOnePost', async (id) => {
   const res = await fetch(`http://localhost:4000/api/v1/posts/${id}`);
   const data = await res.json()
   return data
 })
 
+// Function to fetch one post for authentuicated users
 export const getOnePostForAuthUser = createAsyncThunk('posts/getOnePostsForAuthUser', async ({ id, TOKEN }) => {
   const userRequest = axios.create({
     baseURL: BASE_URL,
@@ -35,6 +39,7 @@ export const getOnePostForAuthUser = createAsyncThunk('posts/getOnePostsForAuthU
   return res.data
 })
 
+// Function to create post for authentuicated users
 export const makePost = async ({ text, imageUrl, TOKEN }, dispatch) => {
   try {
 
@@ -63,6 +68,17 @@ export const makePost = async ({ text, imageUrl, TOKEN }, dispatch) => {
   }
 }
 
+export const getCurrentUserPost = createAsyncThunk('post/currentUserPosts', async ({ TOKEN }) => {
+  const userRequest = axios.create({
+    baseURL: BASE_URL,
+    headers: { 'Authorization': `Bearer ${TOKEN}` }
+  })
+
+  const res = await userRequest.get('auth/user/posts')
+  delete res.headers
+  return res.data
+})
+
 const initialState = {
   pending: null,
   allPosts: [],
@@ -84,7 +100,11 @@ const getPostsSlice = createSlice({
       if (post) {
         post.liked = isLiked;
         post.likes_count = count;
-      }
+      };
+      const userPost = state.allPosts.find((post) => post.id === id);
+      if (userPost) {
+        userPost.likes_count = count
+      };
     },
     getErrorStatus: (state, action) => {
       state.error = action.payload.error
@@ -151,6 +171,21 @@ const getPostsSlice = createSlice({
         const isFulfilled = state;
         isFulfilled.pending = false;
         isFulfilled.onePost = {};
+        isFulfilled.error = action.error
+      })
+      .addCase(getCurrentUserPost.pending, (state, action) => {
+        const isFulfilled = state;
+        isFulfilled.pending = true;
+      })
+      .addCase(getCurrentUserPost.fulfilled, (state, action) => {
+        const isFulfilled = state;
+        isFulfilled.pending = false;
+        isFulfilled.allPosts = action.payload.data
+      })
+      .addCase(getCurrentUserPost.rejected, (state, action) => {
+        const isFulfilled = state;
+        isFulfilled.pending = false;
+        isFulfilled.allPosts = [];
         isFulfilled.error = action.error
       })
   }

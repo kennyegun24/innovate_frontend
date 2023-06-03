@@ -1,44 +1,70 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import { FaShare, FaEllipsisV } from 'react-icons/fa'
 import Likes from '../interractions/Likes'
 import Comments from '../interractions/Comments'
+import ImagePreview from '../postimageshow/ImagePreview'
+import LazyImage from '../lazyimage/LazyImage'
+import moment from 'moment'
+import { useNavigate } from 'react-router-dom'
 
 const ProfilePosts = ({ data }) => {
+    const [preview, setPreview] = useState(false)
+    const [modal, setModal] = useState(false)
+
+    const navigate = useNavigate()
+
+    const postDetails = useCallback(
+        (post) => {
+            navigate(`/post_details/${post.id}`);
+        },
+        [navigate]
+    );
 
     return (
         <div style={{ width: '80%' }}>
 
-            {data.map((each) => (
-                <div className='postCardDiv' key={each.id}>
-                    <div className='flxCnterBtwn'>
-                        <div className='postUserInfo'>
-                            <img src={each.Image} className='postUpdateFormImage' alt="" />
-                            <div>
-                                <p className='font14 weight700'  >{each.name}</p>
-                                <p className='font12' >{each.career}</p>
+            {preview && <ImagePreview img={modal.image} creator={modal.author} text={modal.text} setPreview={setPreview} />}
+            {data.map((each) => {
+                const {
+                    id,
+                    created_at,
+                    creator_name,
+                    creator_image,
+                    image,
+                    text,
+                    likes_count,
+                    comments_count } = each
+                const formatDate = created_at
+                const formattedDate = moment(formatDate).fromNow()
+
+                return (
+                    <div className='postCardDiv' key={id}>
+                        <div className='flxCnterBtwn'>
+                            <div className='postUserInfo'>
+                                <img src={creator_image} className='postUpdateFormImage' alt="" />
+                                <div>
+                                    <p className='font14 weight700'  >{creator_name}</p>
+                                    <p className='font12 opacity05' >{formattedDate}</p>
+                                </div>
+                            </div>
+                            <FaEllipsisV />
+                        </div>
+                        <p className='font14 pointer hover line_breaks' onClick={() => postDetails(each)}>
+                            {text}
+                        </p>
+                        {image && <div className='postImageDiv' onClick={() => setModal({ image: image, author: creator_name, text: text })}>
+                            <LazyImage image={image} setPreview={setPreview} />
+                        </div>
+                        }
+                        <div className='interractionDiv'>
+                            <div className='interractionsDivSm'>
+                                <p className='interractionsText'>{comments_count} comments.</p>
+                                <p className='interractionsText'>{likes_count} likes.</p>
                             </div>
                         </div>
-                        <FaEllipsisV />
                     </div>
-                    <p className='font14'>
-                        {each.post}
-                    </p>
-                    <div className='postImageDiv'>
-                        <img className='postImage' src={each.postImage} alt="" />
-                    </div>
-                    <div className='interractionDiv'>
-                        <div className='interractionsDivSm'>
-                            <Likes />
-                            <FaShare />
-                            <Comments />
-                        </div>
-                        <div className='interractionsDivSm'>
-                            <p className='interractionsText'>{each.comment}</p>
-                            <p className='interractionsText'>{each.likes}</p>
-                        </div>
-                    </div>
-                </div>
-            ))}
+                )
+            })}
         </div>
     )
 }
