@@ -1,0 +1,68 @@
+.postCardDiv {
+    margin-top: 1.5rem;
+    border-radius: 14px;
+    background: #202836;
+    width: 100%;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: #fff
+}
+
+.flxCnterBtwn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
+.postUserInfo {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center
+}
+
+.weight700 {
+    font-weight: 700;
+}
+
+.font14 {
+    font-size: 14px;
+}
+
+.font12 {
+    font-size: 12px;
+}
+
+.postImageDiv {
+    height: 50vh;
+    margin: 0.5rem 0
+}
+
+.postImage {
+    border-radius: 0.5rem;
+    height: 100%;
+    width: 100%;
+    object-fit: cover
+}
+
+.interractionDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.interractionsDivSm {
+    display: flex;
+    gap: 0.5rem
+}
+
+.interractionsText {
+    font-size: 12px;
+    opacity: 0.5
+}
+
+.hover:hover {
+    opacity: 0.5;
+    transition: all 0.3s ease-in-out;
+}

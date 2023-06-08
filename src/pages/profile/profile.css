@@ -1,0 +1,134 @@
+.profileMainDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0.5rem;
+    background: #2F3B50;
+    height: 90vh;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.profileCoverImage {
+    border-radius: 6px;
+    height: 50vh;
+    width: 90%;
+    object-fit: cover;
+    margin-bottom: 0.5rem
+}
+
+.profileUserDetails {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    position: relative;
+}
+
+.profileFirstBtnsDiv {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.profileTmAbBtns {
+    background: #151A23;
+    color: #fff;
+    padding: 0.5rem 2rem;
+    border: none;
+    border-radius: 12px;
+    text-decoration: none
+}
+
+.profileUserNameProfessionDetailsDiv {
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.profileUserImage {
+    height: 7rem;
+    width: 7rem;
+    border-radius: 50%
+}
+
+.profileUserName {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+}
+
+.opacity05 {
+    opacity: 0.5
+}
+
+.profileFollowerEditDiv {
+    padding-top: 0.5rem;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    position: relative;
+    align-items: center
+}
+
+.profileFollowersDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profileEditProfileButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #151A23;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 12px
+}
+
+.profileBasicPostsInfos {
+    width: 90%;
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profileBasicInfoMainDiv {
+    position: sticky;
+    /* top: 2rem; */
+    width: 30%;
+    color: #fff;
+}
+
+.ProfileAllPostsMainDiv {
+    width: 65%;
+    color: #fff;
+}
+
+.profilePostsHeaderDiv {
+    background: #202836;
+    padding: 0.4rem 1rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
+.weight500 {
+    font-weight: 500;
+}
+
+.profilePostsButton {
+    background: #151A23;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 12px
+}
+
+.active {
+    background-color: #5596E6;
+}

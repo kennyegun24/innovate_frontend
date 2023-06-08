@@ -1,0 +1,29 @@
+.basicProfileInfo {
+    position: sticky;
+    top: 4rem;
+}
+
+.basicProfileTitleDiv {
+    background: #202836;
+    padding: 0.7rem 1rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
+.basicProfileInfoDiv {
+    margin-top: 1rem;
+    background: #202836;
+    padding: 0.7rem 1rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem
+}
+
+.basicProfileInfoDivSm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

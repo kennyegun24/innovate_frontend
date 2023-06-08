@@ -1,0 +1,87 @@
+.postUpdateDiv {
+    background: #202836;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.postUpdateDivSm {
+    width: 100%;
+}
+
+.postUpdateTabDiv {
+    background: #202836;
+    display: flex;
+}
+
+.postUpdateTab {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #202836;
+    width: 30%;
+    padding: 0.5rem 4rem;
+    border-right: 1px solid #111;
+    color: #fff
+}
+
+.postUpdateTab2 {
+    border-bottom: 1px solid #111;
+    width: 70%;
+    background-color: #283143;
+}
+
+.tabText {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.postUpdateFormDiv {
+    width: 100%;
+    border-bottom: 1px solid #111;
+    display: flex;
+    margin-top: 20px;
+    gap: 1rem;
+    padding: 0 0.5rem
+}
+
+.postUpdateFormImage {
+    height: 2.5rem;
+    max-width: 2.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.textarea {
+    resize: none;
+    width: 100%;
+    padding: 0.2rem;
+    border: none;
+    background: #202836
+        /* height: 100%; */
+}
+
+/* 
+  textarea::-webkit-input-placeholder,
+  textarea::placeholder {
+    position: absolute;
+    top: 50%;
+    padding-left: 0.5rem;
+    transform: translateY(-50%);
+  } */
+
+.postUpdateBottomNavDiv {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+    padding: 0.3rem
+}
+
+.postUpdateBottomNav {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    background: #2B3649;
+    color: #fff
+}

@@ -1,0 +1,63 @@
+.editProfileLabel {
+    color: #fff;
+    font-size: 14px;
+}
+
+.editLabelInputs {
+    background: #151A23;
+    color: #fff;
+    resize: none;
+}
+
+.editProfileImage {
+    height: var(--5rem);
+    width: var(--5rem);
+    border-radius: var(--50);
+}
+
+.profileAddImage {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: #5596E6
+}
+
+.profileEditSaveBtn {
+    margin-bottom: 1rem;
+    background: #5596E6;
+    padding: 0.5rem;
+    color: #fff;
+    border: none;
+    width: fit-content;
+    text-align: end
+}
+
+.editNavDivBg {
+    padding: 1rem 0;
+    height: 85vh;
+}
+
+.editNavBtnDiv {
+    width: 30%;
+}
+
+.editNavBtn {
+    padding: 0.5rem;
+    color: #fff;
+    border-radius: 6px;
+}
+
+.editNavBasicInfoWorkExp {
+    width: 65%;
+    overflow-y: auto;
+    height: var(--100);
+}
+
+.editNavBasicInfoWorkExp::-webkit-scrollbar {
+    background: #5596E6;
+    width: 5px;
+}
+
+.editNavBasicInfoWorkExp::-webkit-scrollbar-thumb {
+    background: #151A23;
+}
