@@ -37,7 +37,6 @@
 
 .postUpdateFormDiv {
     width: 100%;
-    border-bottom: 1px solid #111;
     display: flex;
     margin-top: 20px;
     gap: 1rem;
@@ -56,24 +55,17 @@
     width: 100%;
     padding: 0.2rem;
     border: none;
-    background: #202836
-        /* height: 100%; */
+    background: #202836;
+    outline: none;
+    color: #fff;
 }
-
-/* 
-  textarea::-webkit-input-placeholder,
-  textarea::placeholder {
-    position: absolute;
-    top: 50%;
-    padding-left: 0.5rem;
-    transform: translateY(-50%);
-  } */
 
 .postUpdateBottomNavDiv {
     align-items: center;
     display: flex;
     gap: 1rem;
-    padding: 0.3rem
+    padding: var(--1rem);
+    border-top: 1px solid #393838;
 }
 
 .postUpdateBottomNav {
@@ -84,4 +76,35 @@
     border-radius: 12px;
     background: #2B3649;
     color: #fff
+}
+
+
+.postUpdateButtonNavDiv {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+    border-top: 1px solid #393838;
+    padding: var(--1rem);
+}
+
+.postUpdateButton {
+    /* display: flex; */
+    /* gap: 0.5rem; */
+    /* align-items: center; */
+    padding: var(--05rem);
+    border-radius: 12px;
+    background: #5596E6;
+    color: #fff;
+    border: none;
+    width: 100%;
+    font-size: 16px;
+}
+
+.postActivityDiv {
+    border-top: 1px solid #393838;
+}
+
+.postActivityIcon {
+    color: #5596E6;
+    font-size: 24px;
 }

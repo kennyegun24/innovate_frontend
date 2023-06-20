@@ -39,6 +39,10 @@
   cursor: pointer;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 /* --------Font sizes------- */
 
 .font12 {
@@ -241,4 +245,17 @@
 
 .borderRadius10px {
   border-radius: 10px;
+}
+
+@media(min-width: 1440px) {
+  .mainAppDiv {
+    background: var(--mainColor);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .mainAppSmDiv {
+    width: 80%;
+  }
 }

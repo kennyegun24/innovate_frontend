@@ -1,17 +1,32 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import LeftNavbar from '../../components/homepage/LeftNavbar'
 import MiddlePage from '../../components/homepage/MiddlePage'
 import RightNavBar from '../../components/homepage/RightNavBar'
 import NewJob from '../../components/newJob'
 import { useDispatch } from 'react-redux'
-import { getPosts } from '../../redux/posts/postSlice'
+import { getPosts, getPostsForAuthUser } from '../../redux/posts/postSlice'
 import './homepage.css'
+import { useSelector } from 'react-redux'
 
 const Homepage = () => {
+    const { currentUser } = useSelector((state) => state.user)
+    const { allPosts, pending, allPostsForAuthUser } = useSelector((state) => state.allPosts)
     const dispatch = useDispatch()
+
     useEffect(() => {
-        dispatch(getPosts())
-    })
+        if (!currentUser) {
+            allPosts.length <= 0 && dispatch(getPosts());
+        }
+    }, [currentUser]);
+
+    useEffect(() => {
+        if (currentUser) {
+            allPostsForAuthUser.length <= 0 && dispatch(getPostsForAuthUser({
+                TOKEN: currentUser?.data?.token
+            }))
+        }
+    }, [currentUser])
+
     return (
         <div className='homepageMainDiv flex darkBlue justify_between height100'>
             <div style={{ width: '22%' }} >
@@ -28,4 +43,4 @@ const Homepage = () => {
     )
 }
 
-export default Homepage
+export default React.memo(Homepage);
