@@ -2,13 +2,20 @@ import React, { useState, useEffect } from 'react'
 import { FaHeart } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import { likeUnlikePost } from '../../redux/apiCalls'
-import { getLikedStatus } from '../../redux/posts/postSlice'
+import { getLikedStatus } from '../../redux/auth_redux/post/post'
 
 const Likes = ({ count, liked, postId }) => {
   const { currentUser } = useSelector((state) => state.user)
   const dispatch = useDispatch()
-
-  const [isLike, setIsLike] = useState({ liked: liked, count: count })
+  console.log(count)
+  console.log(liked)
+  const [isLike, setIsLike] = useState({})
+  useEffect(() => {
+    setIsLike({
+      liked: liked,
+      count: count
+    })
+  }, [count, liked])
   const [trigger, setTrigger] = useState(null)
 
   const like = () => {
@@ -19,6 +26,7 @@ const Likes = ({ count, liked, postId }) => {
     setTrigger(true)
     likeUnlikePost(postId, currentUser?.data?.token)
   }
+  console.log(isLike)
 
   useEffect(() => {
     if (trigger) {

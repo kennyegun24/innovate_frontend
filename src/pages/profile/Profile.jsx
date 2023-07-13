@@ -4,22 +4,16 @@ import ProfilePosts from '../../components/profileosts/ProfilePosts'
 import './profile.css'
 import ProfileHeader from './ProfileHeader'
 import ProfileNav from './ProfileNav'
-import vic from '../../images/vic.jpg'
-import image1 from '../../images/images.png'
-import image2 from '../../images/Picture1.png'
-import image3 from '../../images/noImage.png'
-import image4 from '../../images/screen-0.jpg'
-import image5 from '../../images/screen-3.jpg'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCurrentUserPost } from '../../redux/posts/postSlice'
+import { getCurrentUserPost } from '../../redux/auth_redux/post/post'
 
 const UserProfile = () => {
 
     const dispatch = useDispatch()
-    const { allPosts } = useSelector((state) => state.allPosts)
+    const { currentUserPosts } = useSelector((state) => state.authPost)
     const { currentUser } = useSelector((state) => state.user)
     useEffect(() => {
-        if (allPosts.length <= 0) {
+        if (currentUserPosts.length <= 0) {
             dispatch(getCurrentUserPost({ TOKEN: currentUser?.data?.token }))
         }
     }, [])
@@ -44,7 +38,7 @@ const UserProfile = () => {
                                 <button className='profilePostsButton'>Popular</button>
                             </div>
                         </div>
-                        <ProfilePosts data={allPosts} />
+                        <ProfilePosts data={currentUserPosts} />
                     </div>
                 </div>
             </div>

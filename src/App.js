@@ -12,14 +12,14 @@ import Friends from './pages/friends/Friends';
 import EditProfile from './pages/editProfile/EditProfile';
 import { useStore, useSelector, useDispatch } from 'react-redux';
 import EditWorkExperience from './components/addWork/AddWorkExperience';
-import { dispatchUserDetails, getCurrentUserDetails, loginSuccess, resetUserDetails } from './redux/user/userSlice';
+import { dispatchUserDetails, getCurrentUserDetails, loginSuccess, resetUserDetails } from './redux/auth_redux/user/userSlice';
 import Error401 from './components/401/Error401';
-import { resetState } from './redux/posts/postSlice';
+import { resetState } from './redux/auth_redux/post/post';
 import { resetWorkExerience } from './redux/workexperieence/workexperience';
 
 function App() {
   const { currentUser, detailsError } = useSelector((state) => state.user)
-  const { error } = useSelector((state) => state.allPosts)
+  const { error } = useSelector((state) => state.authPost)
   const { workSliceError } = useSelector((state) => state.workExperience)
   const [err, setErr] = useState(null)
 

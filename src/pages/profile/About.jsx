@@ -3,7 +3,8 @@ import ProfileHeader from './ProfileHeader'
 import ProfileNav from './ProfileNav'
 import AboutOptions from './AboutOptions'
 import { useDispatch, useSelector } from 'react-redux'
-import { getWorkExp } from '../../redux/workexperieence/workexperience'
+// import { getWorkExp } from '../../redux/auth_redux/workexperieence/workexperience'
+import { getWorkExp } from '../../redux/auth_redux/workExperience/workExperience'
 
 const About = () => {
     const dispatch = useDispatch()

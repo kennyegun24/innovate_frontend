@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios'
 
 export const getCurrentUserDetails = createAsyncThunk('etDetails/getCurrentUserDetails', async (token) => {
-    const BASE_URL = 'http://localhost:4000/api/v1'
+    const BASE_URL = 'http://localhost:4000/api/v1/auth/'
     const userRequest = axios.create({
         baseURL: BASE_URL,
         headers: { 'Authorization': `Bearer ${token}` }

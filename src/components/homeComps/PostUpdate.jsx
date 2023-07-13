@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FaBell, FaCamera, FaCheck, FaCheckCircle, FaPen } from 'react-icons/fa'
 import './postUpdate.css'
-import { makePost } from '../../redux/posts/postSlice'
+import { makePost } from '../../redux/auth_redux/post/post'
 import { useDispatch, useSelector } from 'react-redux'
 import Resizer from 'react-image-file-resizer'
 import axios from 'axios'

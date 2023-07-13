@@ -4,18 +4,20 @@ import MiddlePage from '../../components/homepage/MiddlePage'
 import RightNavBar from '../../components/homepage/RightNavBar'
 import NewJob from '../../components/newJob'
 import { useDispatch } from 'react-redux'
-import { getPosts, getPostsForAuthUser } from '../../redux/posts/postSlice'
+import { getPostsForUnAuthUser } from '../../redux/unauth_edux/posts/postSlice'
+import { getPostsForAuthUser } from '../../redux/auth_redux/post/post'
 import './homepage.css'
 import { useSelector } from 'react-redux'
 
 const Homepage = () => {
     const { currentUser } = useSelector((state) => state.user)
-    const { allPosts, pending, allPostsForAuthUser } = useSelector((state) => state.allPosts)
+    const { allPostsUnAuthUser, pending, } = useSelector((state) => state.unAuthPost)
+    const { allPostsForAuthUser } = useSelector(state => state.authPost)
     const dispatch = useDispatch()
 
     useEffect(() => {
         if (!currentUser) {
-            allPosts.length <= 0 && dispatch(getPosts());
+            allPostsUnAuthUser.length <= 0 && dispatch(getPostsForUnAuthUser());
         }
     }, [currentUser]);
 

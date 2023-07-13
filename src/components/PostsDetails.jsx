@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
-import { getOnePostForAuthUser, getPost } from '../redux/posts/postSlice'
+// import { getOnePostForAuthUser, getPost } from '../redux/posts/postSlice'
+import { getOnePostForAuthUser } from '../redux/auth_redux/post/post'
+import { getOnePostForUnAuthUser } from '../redux/unauth_edux/posts/postSlice'
 import { FaEllipsisV, FaShare } from 'react-icons/fa'
 import Comments from './interractions/Comments'
 import Likes from './interractions/Likes'
@@ -14,21 +16,23 @@ const PostsDetails = () => {
   const [more, setMore] = useState(false)
   const [preview, setPreview] = useState(false)
   const [modal, setModal] = useState({})
+  const [post, setPost] = useState({})
   const { pathname } = useLocation()
   const dispatch = useDispatch()
-  const { onePost, pending } = useSelector((state) => state.allPosts)
+  const { onePostForUnAuthUser, pending } = useSelector((state) => state.unAuthPost)
+  const { onePostForAuthUser } = useSelector((state) => state.authPost)
   const { currentUser } = useSelector((state) => state.user)
 
   const split = pathname.split('/')
   const getId = split[split.length - 1]
 
   useEffect(() => {
-    !currentUser && dispatch(getPost(getId))
+    !currentUser && dispatch(getOnePostForUnAuthUser(getId))
     currentUser && dispatch(getOnePostForAuthUser({
       TOKEN: currentUser?.data?.token,
       id: getId
     }))
-  }, [])
+  }, [getId])
 
   useEffect(() => {
     if (preview) {
@@ -38,9 +42,13 @@ const PostsDetails = () => {
     }
   }, [preview]);
 
-  const formatDate = onePost.created_at
+  useEffect(() => {
+    currentUser ? setPost(onePostForAuthUser) : setPost(onePostForUnAuthUser)
+  }, [currentUser, onePostForAuthUser, onePostForUnAuthUser])
+
+  const formatDate = post?.created_at
   const formattedDate = moment(formatDate).fromNow()
-  console.log(onePost.liked)
+  console.log(post?.likes_count)
   return (
     <div style={{ background: '#2F3B50', minHeight: '90vh', gap: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0.1rem 1rem 1.5rem 1rem', }}>
 
@@ -55,14 +63,14 @@ const PostsDetails = () => {
             <>
 
               <div style={{ width: '45%', borderBottomLeftRadius: '0', borderBottomRightRadius: '0' }} className='postCardDiv'>
-                {onePost.image && <div className='postImageDiv'>
-                  <img className='postImage pointer' onClick={() => { setPreview(true); setModal({ text: onePost.text, image: onePost.image, author: onePost.creator_name }) }} src={onePost.image} alt="" />
+                {post?.image && <div className='postImageDiv'>
+                  <img className='postImage pointer' onClick={() => { setPreview(true); setModal({ text: post?.text, image: post?.image, author: post?.creator_name }) }} src={post?.image} alt="" />
                 </div>}
                 <div className='flxCnterBtwn'>
                   <div className='postUserInfo'>
-                    <img src={onePost.creator_image} className='postUpdateFormImage' alt="" />
+                    <img src={post?.creator_image} className='postUpdateFormImage' alt="" />
                     <div>
-                      <p className='font14 weight700'  >{onePost.creator_name}</p>
+                      <p className='font14 weight700'  >{post?.creator_name}</p>
                       <p className='font12 opacity05' >{formattedDate}</p>
                     </div>
                   </div>
@@ -70,27 +78,28 @@ const PostsDetails = () => {
                 </div>
                 < >
                   {
-                    onePost?.text?.length >= 150 && !more ?
+                    post?.text?.length >= 150 && !more ?
                       (
                         <>
-                          <p className='font14' >{onePost.text.slice(0, 100)}</p>
+                          <p className='font14' >{post?.text.slice(0, 100)}</p>
                           <p onClick={() => setMore(true)} className='font12 pointer opacity05'>Read more...</p>
                         </>
                       )
                       :
                       (
-                        <p className='font14'>{onePost.text}</p>
+                        <p className='font14'>{post?.text}</p>
                       )
                   }
                 </>
                 <div className='interractionDiv'>
                   <div className='interractionsDivSm'>
-                    <Likes count={onePost.likes_count} liked={onePost.liked} postId={onePost.id} />
+                    <Likes count={post?.likes_count} liked={post?.liked} postId={post?.id} />
                     <FaShare />
                     <Comments />
                   </div>
+                  <p>{post?.likes_count}</p>
                   <div className='interractionsDivSm'>
-                    <p className='interractionsText'>{onePost.comments_count} comments.</p>
+                    <p className='interractionsText'>{post?.comments_count} comments.</p>
                   </div>
                 </div>
               </div>
