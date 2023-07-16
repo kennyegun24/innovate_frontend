@@ -16,6 +16,7 @@ import { dispatchUserDetails, getCurrentUserDetails, loginSuccess, resetUserDeta
 import Error401 from './components/401/Error401';
 import { resetState } from './redux/auth_redux/post/post';
 import { resetWorkExerience } from './redux/workexperieence/workexperience';
+import OtherUserProfile from './pages/otherUser/OtherUserProfile';
 
 function App() {
   const { currentUser, detailsError } = useSelector((state) => state.user)
@@ -57,6 +58,7 @@ function App() {
           <Route path='/' element={<Homepage />} />
           <Route path='/login' element={!currentUser ? <Login /> : <Navigate to='/' />} />
           <Route path='/userprofile' element={!currentUser ? <Navigate to='/login' /> : <UserProfile />} />
+          <Route path='/user/:name/:id/profile' element={<OtherUserProfile />} />
           <Route path='/about' element={!currentUser ? <Navigate to='/login' /> : <About />} />
           <Route path='/friends' element={!currentUser ? <Navigate to='/login' /> : <Friends />} />
           <Route path='/edit_profile' element={!currentUser ? <Navigate to='/login' /> : <EditProfile />} />

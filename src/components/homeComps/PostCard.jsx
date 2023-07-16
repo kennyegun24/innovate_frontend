@@ -105,13 +105,13 @@ const PostCard = () => {
                   <div className='postCardDiv' key={index}>
                     <div className='flxCnterBtwn'>
                       <div className='postUserInfo'>
-                        <Link to={currentUser?.data?.user_id === author_id ? '/userprofile' : '/'}>
+                        <Link to={currentUser?.data?.user_id === author_id ? '/userprofile' : `/user/${creator_name}/${author_id}/profile`}>
                           <img src={creator_image} className='postUpdateFormImage' alt="" />
+                          <div>
+                            <p className='font14 weight700'  >{creator_name}</p>
+                            <p className='font12 opacity05' >{formattedDate}</p>
+                          </div>
                         </Link>
-                        <div>
-                          <p className='font14 weight700'  >{creator_name}</p>
-                          <p className='font12 opacity05' >{formattedDate}</p>
-                        </div>
                       </div>
                       <PostOptions id={author_id} />
                     </div>

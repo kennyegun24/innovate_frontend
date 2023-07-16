@@ -11,7 +11,7 @@ const UserProfile = () => {
 
     const dispatch = useDispatch()
     const { currentUserPosts } = useSelector((state) => state.authPost)
-    const { currentUser } = useSelector((state) => state.user)
+    const { currentUser, userDetails } = useSelector((state) => state.user)
     useEffect(() => {
         if (currentUserPosts.length <= 0) {
             dispatch(getCurrentUserPost({ TOKEN: currentUser?.data?.token }))
@@ -23,7 +23,7 @@ const UserProfile = () => {
                 <ProfileNav />
             </div>
             <div className='profileMainDiv'>
-                <ProfileHeader />
+                <ProfileHeader data={userDetails} />
 
                 <div className='profileBasicPostsInfos'>
                     <div className='profileBasicInfoMainDiv'>
