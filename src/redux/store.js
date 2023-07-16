@@ -4,6 +4,7 @@ import getUnAuthUserPostsSlice from './unauth_edux/posts/postSlice';
 import userSlice from './auth_redux/user/userSlice';
 import workExpSlice from './auth_redux/workExperience/workExperience'
 import getAuthUserPostsSlice from './auth_redux/post/post';
+import getAuthOtherUserPosts from './auth_redux/otherUser/otherUser';
 
 import {
     persistStore,
@@ -31,6 +32,7 @@ const store = configureStore({
         authPost: getAuthUserPostsSlice,
         unAuthPost: getUnAuthUserPostsSlice,
         workExperience: workExpSlice,
+        otherUserPosts_auth: getAuthOtherUserPosts
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
