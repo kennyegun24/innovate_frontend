@@ -1,12 +1,12 @@
 import { publicRequest } from "../allRequests";
-import { getUserErrorStatus, loginFailure, loginStart, loginSuccess } from "./user/userSlice";
+import { getUserErrorStatus, loginFailure, loginStart, loginSuccess } from "./auth_redux/user/userSlice";
 import axios from "axios";
 import { getWorkErrorStatus } from "./workexperieence/workexperience";
 
 export const login = async (dispatch, user) => {
     dispatch(loginStart());
     try {
-        const res = await publicRequest.post("user/login", user)
+        const res = await publicRequest.post("authenticaation/login", user)
         const responseData = res;
         delete responseData.headers;
         dispatch(loginSuccess(responseData.data))
@@ -17,7 +17,7 @@ export const login = async (dispatch, user) => {
 
 export const register = async (dispatch, user) => {
     dispatch(loginStart());
-    const res = await publicRequest.post("users", user)
+    const res = await publicRequest.post("authenticaation", user)
     const responseData = res.data;
     delete responseData.headers;
     dispatch(loginSuccess(responseData))
@@ -26,12 +26,13 @@ export const register = async (dispatch, user) => {
 export const updateUserDetails = async (user, token, dispatch) => {
     try {
 
-        const BASE_URL = 'http://localhost:4000/api/v1'
+        const BASE_URL = 'http://localhost:4000/api/v1/auth'
         const userRequest = axios.create({
             baseURL: BASE_URL,
             headers: { 'Authorization': `Bearer ${token}` }
         })
-        const res = await userRequest.put("user/update_profile", user)
+        console.log({ user_detail: user })
+        const res = await userRequest.put("user/update_profile", { user_detail: user })
         const responseData = res.data;
         delete responseData.headers;
     } catch (error) {
@@ -47,12 +48,12 @@ export const updateUserDetails = async (user, token, dispatch) => {
 export const newWorkExperience = async (work_experience, token, dispatch) => {
     try {
 
-        const BASE_URL = 'http://localhost:4000/api/v1'
+        const BASE_URL = 'http://localhost:4000/api/v1/auth'
         const userRequest = axios.create({
             baseURL: BASE_URL,
             headers: { 'Authorization': `Bearer ${token}` }
         })
-        const res = await userRequest.post("work_experience", work_experience)
+        const res = await userRequest.post("user/experience/new", work_experience)
         const responseData = res.data;
         delete responseData.headers;
     }
@@ -68,18 +69,18 @@ export const newWorkExperience = async (work_experience, token, dispatch) => {
 }
 
 export const likeUnlikePost = async (id, token) => {
-    const BASE_URL = `http://localhost:4000/api/v1/posts/${id}`
+    const BASE_URL = `http://localhost:4000/api/v1/auth/post/${id}`
     const userRequest = axios.create({
         baseURL: BASE_URL,
         headers: { 'Authorization': `Bearer ${token}` }
     })
-    const res = await userRequest.post("likes")
+    const res = await userRequest.post("like")
     const responseData = res.data;
     delete responseData.headers;
 }
 
 export const addComment = async (token, comment) => {
-    const BASE_URL = 'http://localhost:4000/api/v1'
+    const BASE_URL = 'http://localhost:4000/api/v1/auth'
     const userRequest = axios.create({
         baseURL: BASE_URL,
         headers: { 'Authorization': `Bearer ${token}` }

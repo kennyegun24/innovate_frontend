@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import vic from '../../images/noImage.png'
 import { useDispatch } from 'react-redux'
-import { loginFailure } from '../../redux/user/userSlice'
+import { loginFailure } from '../../redux/auth_redux/user/userSlice'
 import { login } from '../../redux/apiCalls'
 
 const Login = () => {

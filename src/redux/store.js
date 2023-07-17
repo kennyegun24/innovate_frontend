@@ -1,8 +1,10 @@
 import { configureStore, createAction } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage/session'; // Use session storage
-import getPostsSlice from './posts/postSlice';
-import userSlice from './user/userSlice';
-import workExpSlice from './workexperieence/workexperience';
+import getUnAuthUserPostsSlice from './unauth_edux/posts/postSlice';
+import userSlice from './auth_redux/user/userSlice';
+import workExpSlice from './auth_redux/workExperience/workExperience'
+import getAuthUserPostsSlice from './auth_redux/post/post';
+
 import {
     persistStore,
     persistReducer,
@@ -26,7 +28,8 @@ const persistedUserReducer = persistReducer(persistConfig, userSlice);
 const store = configureStore({
     reducer: {
         user: persistedUserReducer,
-        allPosts: getPostsSlice,
+        authPost: getAuthUserPostsSlice,
+        unAuthPost: getUnAuthUserPostsSlice,
         workExperience: workExpSlice,
     },
     middleware: (getDefaultMiddleware) =>

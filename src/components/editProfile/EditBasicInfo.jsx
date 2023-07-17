@@ -22,6 +22,7 @@ const EditBasicInfo = () => {
         e.preventDefault()
         updateUserDetails(form, currentUser?.data?.token, dispatch)
     }
+    console.log(form)
 
     return (
         <div className='padding1rem marginBtm1rem flex justify_start width100' >
