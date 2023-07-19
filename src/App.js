@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Outlet, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import TopNav from './components/topNav/TopNav';
 import Login from './pages/auth/Login';
@@ -17,6 +17,10 @@ import Error401 from './components/401/Error401';
 import { resetState } from './redux/auth_redux/post/post';
 import { resetWorkExerience } from './redux/workexperieence/workexperience';
 import OtherUserProfile from './pages/otherUser/OtherUserProfile';
+import JobDetails from './pages/jobs/JobsPage';
+import AllJobs from './pages/jobs/AllJobs';
+import JobApplicationForm from './pages/jobs/JobApplicationForm';
+import Store from './pages/store/Store';
 
 function App() {
   const { currentUser, detailsError } = useSelector((state) => state.user)
@@ -49,6 +53,7 @@ function App() {
 
   const isLoginPage = location.pathname === '/login';
 
+
   return (
     <div className='mainAppDiv'>
       <div className='mainAppSmDiv'>
@@ -64,6 +69,26 @@ function App() {
           <Route path='/edit_profile' element={!currentUser ? <Navigate to='/login' /> : <EditProfile />} />
           <Route path='/add_experience' element={!currentUser ? <Navigate to='/login' /> : <EditWorkExperience />} />
           <Route path='/post_details/:id' element={<PostsDetails />} />
+          <Route path='/store' element={<Store />} />
+          <Route path='/jobs' element={(
+            <div className="jobs-container">
+              <div className="job-component scrollBar">
+                <AllJobs />
+              </div>
+              <div className="job-posts-details scrollBar">
+                <Outlet />
+              </div>
+            </div>
+          )}>
+            <Route
+              path='/jobs/:company_name/:id'
+              element={<JobDetails />}
+            />
+            <Route
+              path='/jobs/:company_name/:id/apply'
+              element={<JobApplicationForm />}
+            />
+          </Route>
         </Routes>
       </div>
     </div>
