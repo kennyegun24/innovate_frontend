@@ -51,10 +51,16 @@ const ProfileHeader = ({ data }) => {
                     <h2>{data?.followers_count} </h2>
                     <p className='opacity05'>Followers</p>
                 </div>
-                {url === '/userprofile' && <NavLink className='profileTmAbBtns' to='/edit_profile' >
-                    <AiOutlineEdit />
-                    Edit Profile
-                </NavLink>}
+                {url === '/userprofile' ?
+                    <NavLink className='profileTmAbBtns' to='/edit_profile' >
+                        <AiOutlineEdit />
+                        Edit Profile
+                    </NavLink>
+                    :
+                    <button className='profileFollowtns' to='/edit_profile' >
+                        Follow
+                    </button>
+                }
             </div>
         </>
     )
