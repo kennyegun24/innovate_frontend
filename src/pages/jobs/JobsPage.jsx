@@ -19,7 +19,7 @@ const JobDetails = () => {
     console.log(urlId)
     console.log(urlName)
     return (
-        <div style={{ padding: '0 0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'flex-start' }}>
+        <div style={{ padding: '0 1rem 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', alignItems: 'flex-start' }}>
             <div>
                 <h2 style={{ fontSize: '35px' }}>{job.job_title}</h2>
                 <p style={{ fontSize: '16px' }}>{job.company_name}</p>
