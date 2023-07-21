@@ -1,0 +1,5 @@
+.storeMainDiv {
+    background-color: var(--primaryColor);
+    height: 90vh;
+    color: #fff;
+}
