@@ -13,7 +13,8 @@ const BlogContent = () => {
             id: 1,
             userImage: image1,
             userName: 'Kenny',
-            created_at: '1/1/2022'
+            created_at: '1/1/2022',
+            comments: 213
         },
         {
             image: image,
@@ -22,7 +23,8 @@ const BlogContent = () => {
             userImage: image1,
             id: 2,
             userName: 'Elias',
-            created_at: '1/1/2022'
+            created_at: '1/1/2022',
+            comments: 2132
         },
         {
             image: image,
@@ -31,7 +33,8 @@ const BlogContent = () => {
             userImage: image1,
             id: 3,
             userName: 'Sam',
-            created_at: '1/1/2022'
+            created_at: '1/1/2022',
+            comments: 3232
         },
         {
             image: image,
@@ -40,7 +43,8 @@ const BlogContent = () => {
             userImage: image1,
             id: 4,
             userName: 'Sam',
-            created_at: '1/1/2022'
+            created_at: '1/1/2022',
+            comments: 564
         },
         {
             image: image,
@@ -49,7 +53,8 @@ const BlogContent = () => {
             userImage: image1,
             id: 5,
             userName: 'Sam',
-            created_at: '1/1/2022'
+            created_at: '1/1/2022',
+            comments: 576
         },
         {
             image: image,
@@ -58,7 +63,8 @@ const BlogContent = () => {
             userImage: image1,
             id: 6,
             userName: 'Sam',
-            created_at: '1/1/2022'
+            created_at: '1/1/2022',
+            comments: 6876
         },
         {
             image: image,
@@ -67,7 +73,8 @@ const BlogContent = () => {
             userImage: image1,
             id: 7,
             userName: 'Sam',
-            created_at: '1/1/2022'
+            created_at: '1/1/2022',
+            comments: 577
         },
     ]
     return (
@@ -80,9 +87,14 @@ const BlogContent = () => {
                     <Link to={`/blogs/${each.id}`} style={{ textAlign: 'center', color: '#5596E6', textDecoration: 'none', fontSize: '18px', fontWeight: 600 }}>{each.title.slice(0, 35)}...</Link>
                     <div className='blogTextPreviewDiv'>
                         <p className='blogTextPreview'>{each.desc.slice(0, 150)}...</p>
-                        <div className='blogNameTimePreview'>
-                            <p>{each.userName}</p>
-                            <p className='font14 opacity05'>{each.created_at}</p>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                            <div className='blogNameTimePreview'>
+                                <p>{each.userName}</p>
+                                <p className='font14 opacity05'>{each.created_at}</p>
+                            </div>
+                            <div className='blogNameTimePreview'>
+                                <p className='font14 opacity05'>{each.comments}. comments</p>
+                            </div>
                         </div>
                     </div>
                 </div>
