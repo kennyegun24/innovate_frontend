@@ -10,7 +10,7 @@ import About from './pages/profile/About';
 import PostsDetails from './components/PostsDetails';
 import Friends from './pages/friends/Friends';
 import EditProfile from './pages/editProfile/EditProfile';
-import { useStore, useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import EditWorkExperience from './components/addWork/AddWorkExperience';
 import { dispatchUserDetails, getCurrentUserDetails, loginSuccess, resetUserDetails } from './redux/auth_redux/user/userSlice';
 import Error401 from './components/401/Error401';
@@ -21,6 +21,8 @@ import JobDetails from './pages/jobs/JobsPage';
 import AllJobs from './pages/jobs/AllJobs';
 import JobApplicationForm from './pages/jobs/JobApplicationForm';
 import Store from './pages/store/Store';
+import Blog from './pages/blog/Blog';
+import BlogNav from './components/blog/BlogNav';
 
 function App() {
   const { currentUser, detailsError } = useSelector((state) => state.user)
@@ -70,6 +72,21 @@ function App() {
           <Route path='/add_experience' element={!currentUser ? <Navigate to='/login' /> : <EditWorkExperience />} />
           <Route path='/post_details/:id' element={<PostsDetails />} />
           <Route path='/store' element={<Store />} />
+          <Route path='/blog' element={
+            <div className="blog-container">
+              <div className="blogNav-component">
+                <BlogNav />
+              </div>
+              <div className="blogs-Component scrollBar">
+                <Outlet />
+              </div>
+            </div>
+          }>
+            <Route
+              path='/blog'
+              element={<Blog />}
+            />
+          </Route>
           <Route path='/jobs' element={(
             <div className="jobs-container">
               <div className="job-component scrollBar">

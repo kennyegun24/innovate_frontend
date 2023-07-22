@@ -90,7 +90,7 @@ const AllJobs = () => {
             {
                 allJobs.map((job) => (
                     <Link to={`/jobs/${job.company_name}/${job.id}`} style={{ color: '#d1cdcd', textDecoration: 'none' }}>
-                        <div key={job.id} style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', marginBottom: '0.5rem' }}>
+                        <div key={job.id} style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', marginBottom: '1rem' }}>
                             <div>
                                 <img style={{ width: '50px', objectFit: 'cover', height: '50px' }} src={job.image} />
                             </div>

@@ -30,3 +30,7 @@
     background: #00ff00;
     border-radius: 50%
 }
+
+.topNavMainDiv .active .icons {
+    color: #5596E6;
+}
