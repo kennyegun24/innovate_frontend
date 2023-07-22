@@ -1,6 +1,11 @@
 import React from 'react'
 import image from '../../images/noImage.png'
 import image1 from '../../images/musk.jpg'
+import image2 from '../../images/gates.jpg'
+import image3 from '../../images/vic.jpg'
+import image4 from '../../images/Picture1.png'
+import image5 from '../../images/kim.jpg'
+import image6 from '../../images/images.png'
 import './blogContent.css'
 import { Link } from 'react-router-dom'
 
@@ -17,7 +22,7 @@ const BlogContent = () => {
             comments: 213
         },
         {
-            image: image,
+            image: image1,
             desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel ipsa repudiandae quasi. Excepturi voluptatibus sint quidem, necessitatibus fuga rem asperiores eos neque, libero voluptates inventore debitis natus, odio temporibus ad.',
             title: 'My new html Page',
             userImage: image1,
@@ -27,7 +32,7 @@ const BlogContent = () => {
             comments: 2132
         },
         {
-            image: image,
+            image: image2,
             desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel ipsa repudiandae quasi. Excepturi voluptatibus sint quidem, necessitatibus fuga rem asperiores eos neque, libero voluptates inventore debitis natus, odio temporibus ad.',
             title: 'My new html Page',
             userImage: image1,
@@ -37,7 +42,7 @@ const BlogContent = () => {
             comments: 3232
         },
         {
-            image: image,
+            image: image3,
             desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel ipsa repudiandae quasi. Excepturi voluptatibus sint quidem, necessitatibus fuga rem asperiores eos neque, libero voluptates inventore debitis natus, odio temporibus ad.',
             title: 'My new html Page',
             userImage: image1,
@@ -47,7 +52,7 @@ const BlogContent = () => {
             comments: 564
         },
         {
-            image: image,
+            image: image4,
             desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel ipsa repudiandae quasi. Excepturi voluptatibus sint quidem, necessitatibus fuga rem asperiores eos neque, libero voluptates inventore debitis natus, odio temporibus ad.',
             title: 'My new html Page',
             userImage: image1,
@@ -57,7 +62,7 @@ const BlogContent = () => {
             comments: 576
         },
         {
-            image: image,
+            image: image5,
             desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel ipsa repudiandae quasi. Excepturi voluptatibus sint quidem, necessitatibus fuga rem asperiores eos neque, libero voluptates inventore debitis natus, odio temporibus ad.',
             title: 'My new html Page',
             userImage: image1,
@@ -67,7 +72,7 @@ const BlogContent = () => {
             comments: 6876
         },
         {
-            image: image,
+            image: image6,
             desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel ipsa repudiandae quasi. Excepturi voluptatibus sint quidem, necessitatibus fuga rem asperiores eos neque, libero voluptates inventore debitis natus, odio temporibus ad.',
             title: 'My new html Page',
             userImage: image1,
