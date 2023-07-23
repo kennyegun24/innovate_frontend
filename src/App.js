@@ -24,6 +24,7 @@ import Store from './pages/store/Store';
 import Blog from './pages/blog/Blog';
 import BlogNav from './components/blog/BlogNav';
 import BlogPost from './components/blog/BlogPost';
+import BlogWrite from './components/blog/BlogWrite';
 
 function App() {
   const { currentUser, detailsError } = useSelector((state) => state.user)
@@ -90,6 +91,10 @@ function App() {
             <Route
               path='/blog/:id'
               element={<BlogPost />}
+            />
+            <Route
+              path='/blog/create_blog_post'
+              element={<BlogWrite />}
             />
           </Route>
           <Route path='/jobs' element={(

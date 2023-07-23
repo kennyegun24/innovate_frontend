@@ -27,4 +27,5 @@
 
 .blogNavigationContainer .active {
     background-color: #5596E6;
+    opacity: 1;
 }

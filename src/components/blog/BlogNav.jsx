@@ -15,11 +15,11 @@ const BlogNav = () => {
             </div>
 
             <nav className='blogNavigationContainer'>
-                <NavLink className='font14 opacity05' to='/blog' style={{ padding: '0.2rem', display: 'flex', gap: '1rem', alignItems: 'center', color: '#fff', textDecoration: 'none' }}>
+                <NavLink className='font14 opacity05' to='/blog' end style={{ padding: '0.2rem', display: 'flex', gap: '1rem', alignItems: 'center', color: '#fff', textDecoration: 'none' }}>
                     <FaHome />
                     <p>Blog Home</p>
                 </NavLink>
-                <NavLink className='font14 opacity05' to='/edit_profile' style={{ padding: '0.2rem', display: 'flex', gap: '1rem', alignItems: 'center', color: '#fff', textDecoration: 'none' }}>
+                <NavLink className='font14 opacity05' to='/blog/create_blog_post' style={{ padding: '0.2rem', display: 'flex', gap: '1rem', alignItems: 'center', color: '#fff', textDecoration: 'none' }}>
                     <BiPen />
                     <p>Create Blog</p>
                 </NavLink>
@@ -32,4 +32,4 @@ const BlogNav = () => {
     )
 }
 
-export default BlogNav
+export default BlogNav;
