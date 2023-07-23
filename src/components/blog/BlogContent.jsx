@@ -89,7 +89,7 @@ const BlogContent = () => {
                     <div className='blogUserPostImageDiv'>
                         <img className='blogUserPostImage' src={each.image} />
                     </div>
-                    <Link to={`/blogs/${each.id}`} style={{ textAlign: 'center', color: '#5596E6', textDecoration: 'none', fontSize: '18px', fontWeight: 600 }}>{each.title.slice(0, 35)}...</Link>
+                    <Link to={`/blog/${each.id}`} style={{ textAlign: 'center', color: '#5596E6', textDecoration: 'none', fontSize: '18px', fontWeight: 600 }}>{each.title.slice(0, 35)}...</Link>
                     <div className='blogTextPreviewDiv'>
                         <p className='blogTextPreview'>{each.desc.slice(0, 150)}...</p>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>

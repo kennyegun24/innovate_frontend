@@ -23,6 +23,7 @@ import JobApplicationForm from './pages/jobs/JobApplicationForm';
 import Store from './pages/store/Store';
 import Blog from './pages/blog/Blog';
 import BlogNav from './components/blog/BlogNav';
+import BlogPost from './components/blog/BlogPost';
 
 function App() {
   const { currentUser, detailsError } = useSelector((state) => state.user)
@@ -85,6 +86,10 @@ function App() {
             <Route
               path='/blog'
               element={<Blog />}
+            />
+            <Route
+              path='/blog/:id'
+              element={<BlogPost />}
             />
           </Route>
           <Route path='/jobs' element={(

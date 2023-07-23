@@ -237,6 +237,10 @@
   gap: var(--2rem);
 }
 
+.gap5rem {
+  gap: var(--5rem);
+}
+
 /* --------gap end------- */
 
 .display_none {
@@ -249,6 +253,10 @@
 
 .br04px {
   border-radius: 4px;
+}
+
+.relative {
+  position: relative;
 }
 
 @media(min-width: 1440px) {
