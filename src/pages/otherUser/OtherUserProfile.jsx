@@ -1,29 +1,31 @@
 import React, { useEffect } from 'react'
-import BasicInfo from './BasicInfo'
+import ProfileNav from '../profile/ProfileNav'
+import ProfileHeader from '../profile/ProfileHeader'
+import BasicInfo from '../profile/BasicInfo'
 import ProfilePosts from '../../components/profileosts/ProfilePosts'
-import './profile.css'
-import ProfileHeader from './ProfileHeader'
-import ProfileNav from './ProfileNav'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentUserPost } from '../../redux/auth_redux/post/post'
+import otherUser, { getOtherUserDetails, getOtherUserPosts } from '../../redux/auth_redux/otherUser/otherUser'
 
-const UserProfile = () => {
-
+const OtherUserProfile = () => {
     const dispatch = useDispatch()
-    const { currentUserPosts } = useSelector((state) => state.authPost)
-    const { currentUser, userDetails } = useSelector((state) => state.user)
+    const { otherUserPosts, otherUserDetails } = useSelector((state) => state.otherUserPosts_auth)
+    const { currentUser } = useSelector((state) => state.user)
+    const link = document.location.pathname
+    const userId = link.split('/')[3]
     useEffect(() => {
-        if (currentUserPosts.length <= 0) {
-            dispatch(getCurrentUserPost({ TOKEN: currentUser?.data?.token }))
+        dispatch(getOtherUserPosts({ TOKEN: currentUser?.data?.token, id: userId }))
+        if (currentUser) {
+            dispatch(getOtherUserDetails({ TOKEN: currentUser?.data?.token, id: userId }))
         }
-    }, [])
+    }, [currentUser, userId])
+    console.log(otherUserPosts)
+    console.log(otherUserDetails)
+
     return (
         <div style={{ display: 'flex', overflow: 'hidden' }}>
-            <div style={{ width: '25%', background: '#151A23' }}>
-                <ProfileNav />
-            </div>
             <div className='profileMainDiv'>
-                <ProfileHeader data={userDetails} />
+                <ProfileHeader data={otherUserDetails} />
 
                 <div className='profileBasicPostsInfos'>
                     <div className='profileBasicInfoMainDiv'>
@@ -38,7 +40,7 @@ const UserProfile = () => {
                                 <button className='profilePostsButton'>Popular</button>
                             </div>
                         </div>
-                        <ProfilePosts data={currentUserPosts} />
+                        <ProfilePosts data={otherUserPosts} />
                     </div>
                 </div>
             </div>
@@ -46,4 +48,4 @@ const UserProfile = () => {
     )
 }
 
-export default UserProfile;
+export default OtherUserProfile

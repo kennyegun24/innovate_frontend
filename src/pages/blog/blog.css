@@ -1,0 +1,18 @@
+.blog-container {
+    background-color: var(--primaryColor);
+    height: 90vh;
+    color: #fff;
+    display: flex;
+    padding: 1.5rem 0;
+}
+
+.blogNav-component {
+    flex: 1;
+    border-right: 1px solid #fff;
+}
+
+.blogs-Component {
+    flex: 4;
+    overflow-y: auto;
+    padding: 0 3rem;
+}

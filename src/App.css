@@ -237,6 +237,10 @@
   gap: var(--2rem);
 }
 
+.gap5rem {
+  gap: var(--5rem);
+}
+
 /* --------gap end------- */
 
 .display_none {
@@ -247,12 +251,21 @@
   border-radius: 10px;
 }
 
+.br04px {
+  border-radius: 4px;
+}
+
+.relative {
+  position: relative;
+}
+
 @media(min-width: 1440px) {
   .mainAppDiv {
     background: var(--mainColor);
     width: 100%;
     display: flex;
     justify-content: center;
+    height: 100vh;
   }
 
   .mainAppSmDiv {

@@ -38,6 +38,15 @@
     text-decoration: none
 }
 
+.profileFollowtns {
+    background: #5596E6;
+    color: #fff;
+    padding: 0.5rem 2rem;
+    border: none;
+    border-radius: 12px;
+    text-decoration: none
+}
+
 .profileUserNameProfessionDetailsDiv {
     position: absolute;
     top: -80px;
@@ -133,6 +142,6 @@
     border-radius: 12px
 }
 
-.active {
+.profileTmAbBtns .active {
     background-color: #5596E6;
 }

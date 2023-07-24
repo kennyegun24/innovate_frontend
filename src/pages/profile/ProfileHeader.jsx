@@ -5,8 +5,9 @@ import { AiOutlineEdit } from 'react-icons/ai'
 import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-const ProfileHeader = () => {
-    const { userDetails, currentUser } = useSelector((state) => state.user)
+const ProfileHeader = ({ data }) => {
+    const url = document.location.pathname
+    console.log(url)
     return (
         <>
             <img className='profileCoverImage' src={image} alt="" />
@@ -24,12 +25,12 @@ const ProfileHeader = () => {
                 </div>
 
                 <div className='profileUserNameProfessionDetailsDiv'>
-                    <img className='profileUserImage' src={userDetails?.image} alt="" />
+                    <img className='profileUserImage' src={data?.image} alt="" />
                     <div className='profileUserName'>
-                        <h2>{userDetails?.name}</h2>
+                        <h2>{data?.name}</h2>
                         {
-                            userDetails?.profession &&
-                            <p className='opacity05'>{userDetails?.profession}</p>
+                            data?.profession &&
+                            <p className='opacity05'>{data?.profession}</p>
                         }
                     </div>
                 </div>
@@ -47,13 +48,19 @@ const ProfileHeader = () => {
 
             <div className='profileFollowerEditDiv'>
                 <div className='ProfileFollowersDiv'>
-                    <h2>7.4K </h2>
+                    <h2>{data?.followers_count} </h2>
                     <p className='opacity05'>Followers</p>
                 </div>
-                <NavLink className='profileTmAbBtns' to='/edit_profile' >
-                    <AiOutlineEdit />
-                    Edit Profile
-                </NavLink>
+                {url === '/userprofile' ?
+                    <NavLink className='profileTmAbBtns' to='/edit_profile' >
+                        <AiOutlineEdit />
+                        Edit Profile
+                    </NavLink>
+                    :
+                    <button className='profileFollowtns' to='/edit_profile' >
+                        Follow
+                    </button>
+                }
             </div>
         </>
     )
