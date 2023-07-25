@@ -15,10 +15,8 @@ const TopNav = () => {
         <div className='topNavMainDiv mainBackground justify_between align_center flex'>
             <div className='flex align_center gap15rem' >
                 <NavLink to='/'><BiHomeHeart className='icons' /></NavLink>
-                <AiOutlineHeart className='icons' />
                 <BsBell className='icons' />
-                <AiOutlineMail className='icons' />
-                <BiMessage className='icons' />
+                <NavLink to='/messages'><BiMessage className='icons' /></NavLink>
                 <NavLink to='/store'><BiShoppingBag className='icons' /></NavLink>
                 <NavLink to='/jobs'><SlBriefcase className='icons' /></NavLink>
                 <NavLink to='/blog'><FaBlogger className='icons' /></NavLink>

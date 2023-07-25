@@ -25,6 +25,8 @@ import Blog from './pages/blog/Blog';
 import BlogNav from './components/blog/BlogNav';
 import BlogPost from './components/blog/BlogPost';
 import BlogWrite from './components/blog/BlogWrite';
+import AllChats from './components/chats/AllChats';
+import ChatContent from './components/chats/ChatContent';
 
 function App() {
   const { currentUser, detailsError } = useSelector((state) => state.user)
@@ -114,6 +116,21 @@ function App() {
             <Route
               path='/jobs/:company_name/:id/apply'
               element={<JobApplicationForm />}
+            />
+          </Route>
+          <Route path='/messages' element={(
+            <div className="chat-container">
+              <div className="allChat-component scrollBar">
+                <AllChats />
+              </div>
+              <div className="chatContent-Component">
+                <Outlet />
+              </div>
+            </div>
+          )}>
+            <Route
+              path='/messages/:name/:id'
+              element={<ChatContent />}
             />
           </Route>
         </Routes>
