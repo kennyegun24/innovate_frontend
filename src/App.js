@@ -27,6 +27,8 @@ import BlogPost from './components/blog/BlogPost';
 import BlogWrite from './components/blog/BlogWrite';
 import AllChats from './components/chats/AllChats';
 import ChatContent from './components/chats/ChatContent';
+import Notification from './pages/notification/Notification';
+import SuggestedUsers from './pages/suggestedUsers/SuggestedUsers';
 
 function App() {
   const { currentUser, detailsError } = useSelector((state) => state.user)
@@ -76,6 +78,8 @@ function App() {
           <Route path='/add_experience' element={!currentUser ? <Navigate to='/login' /> : <EditWorkExperience />} />
           <Route path='/post_details/:id' element={<PostsDetails />} />
           <Route path='/store' element={<Store />} />
+          <Route path='/suggested_users' element={<SuggestedUsers />} />
+          <Route path='/notifications' element={<Notification />} />
           <Route path='/blog' element={
             <div className="blog-container">
               <div className="blogNav-component">
