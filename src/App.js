@@ -27,6 +27,15 @@ import BlogPost from './components/blog/BlogPost';
 import BlogWrite from './components/blog/BlogWrite';
 import AllChats from './components/chats/AllChats';
 import ChatContent from './components/chats/ChatContent';
+import Notification from './pages/notification/Notification';
+import SuggestedUsers from './pages/suggestedUsers/SuggestedUsers';
+import CompanyProfile from './pages/company_profile/CompanyProfile';
+import CompanyOpenJobs from './pages/company_profile/CompanyOpenJobs';
+import ProfileHeader from './pages/company_profile/ProfileHeader';
+import BasicInfo from './pages/company_profile/BasicInfo';
+import otherUser, { getOtherUserDetails, getOtherUserPosts } from './redux/auth_redux/otherUser/otherUser'
+import ProfilePosts from './pages/company_profile/ProfilePosts';
+import AboutCompany from './pages/company_profile/AboutCompany';
 
 function App() {
   const { currentUser, detailsError } = useSelector((state) => state.user)
@@ -59,6 +68,15 @@ function App() {
 
   const isLoginPage = location.pathname === '/login';
 
+  const { otherUserPosts, otherUserDetails } = useSelector((state) => state.otherUserPosts_auth)
+  const link = document.location.pathname
+  const userId = link.split('/')[3]
+  useEffect(() => {
+    dispatch(getOtherUserPosts({ TOKEN: currentUser?.data?.token, id: userId }))
+    if (currentUser) {
+      dispatch(getOtherUserDetails({ TOKEN: currentUser?.data?.token, id: userId }))
+    }
+  }, [currentUser, userId])
 
   return (
     <div className='mainAppDiv'>
@@ -76,6 +94,26 @@ function App() {
           <Route path='/add_experience' element={!currentUser ? <Navigate to='/login' /> : <EditWorkExperience />} />
           <Route path='/post_details/:id' element={<PostsDetails />} />
           <Route path='/store' element={<Store />} />
+          <Route path='/suggested_users' element={<SuggestedUsers />} />
+          <Route path='/company/:id' element={
+            <div className='profileMainDiv'>
+              <ProfileHeader data={otherUserDetails} />
+
+              <div className='profileBasicPostsInfos'>
+                <div className='profileBasicInfoMainDiv'>
+                  <BasicInfo />
+                </div>
+                <div className='ProfileAllPostsMainDiv' style={{ maxHeight: '70vh' }}>
+                  <Outlet />
+                </div>
+              </div>
+            </div>
+          }>
+            <Route path='/company/:id/jobs' element={<CompanyOpenJobs />} />
+            <Route path='/company/:id/posts' element={<ProfilePosts data={otherUserPosts} />} />
+            <Route path='/company/:id/about' element={<AboutCompany />} />
+          </Route>
+          <Route path='/notifications' element={<Notification />} />
           <Route path='/blog' element={
             <div className="blog-container">
               <div className="blogNav-component">
