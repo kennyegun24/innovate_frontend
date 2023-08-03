@@ -18,10 +18,7 @@ const UserProfile = () => {
         }
     }, [])
     return (
-        <div style={{ display: 'flex', overflow: 'hidden' }}>
-            <div style={{ width: '25%', background: '#151A23' }}>
-                <ProfileNav />
-            </div>
+        <div style={{ display: 'flex', overflow: 'hidden', width: '100%' }}>
             <div className='profileMainDiv'>
                 <ProfileHeader data={userDetails} />
 
