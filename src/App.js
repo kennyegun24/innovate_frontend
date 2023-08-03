@@ -36,6 +36,9 @@ import BasicInfo from './pages/company_profile/BasicInfo';
 import otherUser, { getOtherUserDetails, getOtherUserPosts } from './redux/auth_redux/otherUser/otherUser'
 import ProfilePosts from './pages/company_profile/ProfilePosts';
 import AboutCompany from './pages/company_profile/AboutCompany';
+import AddNewJob from './pages/company_profile/AddNewJob';
+import WrongLocation from './pages/404/WrongLocation';
+import ProfileNav from './pages/profile/ProfileNav';
 
 function App() {
   const { currentUser, detailsError } = useSelector((state) => state.user)
@@ -78,6 +81,13 @@ function App() {
     }
   }, [currentUser, userId])
 
+  const current_User = {
+    data: {
+      type: 'company',
+      // type: 'individual',
+    }
+  }
+
   return (
     <div className='mainAppDiv'>
       <div className='mainAppSmDiv'>
@@ -86,15 +96,31 @@ function App() {
         <Routes>
           <Route path='/' element={<Homepage />} />
           <Route path='/login' element={!currentUser ? <Login /> : <Navigate to='/' />} />
-          <Route path='/userprofile' element={!currentUser ? <Navigate to='/login' /> : <UserProfile />} />
           <Route path='/user/:name/:id/profile' element={<OtherUserProfile />} />
-          <Route path='/about' element={!currentUser ? <Navigate to='/login' /> : <About />} />
-          <Route path='/friends' element={!currentUser ? <Navigate to='/login' /> : <Friends />} />
-          <Route path='/edit_profile' element={!currentUser ? <Navigate to='/login' /> : <EditProfile />} />
-          <Route path='/add_experience' element={!currentUser ? <Navigate to='/login' /> : <EditWorkExperience />} />
           <Route path='/post_details/:id' element={<PostsDetails />} />
           <Route path='/store' element={<Store />} />
           <Route path='/suggested_users' element={<SuggestedUsers />} />
+          <Route path='/*' element={< WrongLocation />} />
+          <Route path='/profile' element={
+            !currentUser ?
+              <div style={{ display: 'flex', overflow: 'hidden' }}>
+                <div style={{ width: '25%', background: '#151A23' }}>
+                  <ProfileNav />
+                </div>
+                <div className='profileMainDiv' style={{ width: '100%', overflow: 'hidden' }}>
+                  <Outlet />
+                </div>
+              </div>
+              : <Navigate to='/login' />
+          }>
+            <Route path='/profile' element={<UserProfile />} />
+            <Route path='/profile/add_experience' element={<EditWorkExperience />} />
+            {current_User.data.type === 'company' && <Route path='/profile/add_job' element={<AddNewJob />} />}
+            <Route path='/profile/edit_profile' element={<EditProfile />} />
+            <Route path='/profile/about' element={<About />} />
+            <Route path='/profile/friends' element={<Friends />} />
+          </Route>
+
           <Route path='/company/:id' element={
             <div className='profileMainDiv'>
               <ProfileHeader data={otherUserDetails} />
