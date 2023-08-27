@@ -3,7 +3,7 @@ import ApplicationSuccess from './ApplicationSuccess'
 
 const JobApplicationForm = () => {
     const urlId = document.location.pathname.split('/')[3]
-    const urlName = document.location.pathname.split('/')[2]
+    const urlName = document.location.pathname.split('/')[2].split('%20').join(' ')
     const [date, setDate] = useState(null)
     const [submit, setSubmit] = useState(false)
     console.log(urlId)

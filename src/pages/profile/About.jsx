@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import ProfileHeader from './ProfileHeader'
-import ProfileNav from './ProfileNav'
 import AboutOptions from './AboutOptions'
 import { useDispatch, useSelector } from 'react-redux'
 // import { getWorkExp } from '../../redux/auth_redux/workexperieence/workexperience'
@@ -13,11 +12,8 @@ const About = () => {
         dispatch(getWorkExp(currentUser?.data?.token))
     }, [])
     return (
-        <div className='flex'>
-            <div style={{ width: '25%' }}>
-                <ProfileNav />
-            </div>
-            <div className='profileMainDiv' >
+        <div className='flex width100'>
+            <div className='profileMainDiv width100' >
                 <ProfileHeader />
 
                 <AboutOptions />

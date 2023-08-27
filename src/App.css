@@ -98,6 +98,10 @@
   text-align: var(--center);
 }
 
+.wrap {
+  flex-wrap: wrap;
+}
+
 /* --------Flex end------- */
 
 

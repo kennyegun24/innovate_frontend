@@ -7,6 +7,13 @@ import { useSelector } from 'react-redux'
 
 const ProfileNav = () => {
   const { userDetails } = useSelector((state) => state.user)
+  const currentUser = {
+    data: {
+      type: 'company',
+      // type: 'individual',
+    }
+  }
+
   return (
     <div style={{ width: '100%', background: '#151A23', height: '100%', padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <div style={{ color: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
@@ -20,26 +27,32 @@ const ProfileNav = () => {
       <div style={{ color: '#fff', lineHeight: '35px' }}>
         <NavLink className='font14 opacity05' to='/userprofile' style={{ padding: '0.2rem', display: 'flex', gap: '1rem', alignItems: 'center', color: '#fff', textDecoration: 'none' }} >
           <FaUser />
-          User profile
+          Profile
         </NavLink>
         <NavLink className='font14 opacity05' to='/friends' style={{ padding: '0.2rem', display: 'flex', gap: '1rem', alignItems: 'center', color: '#fff', textDecoration: 'none' }} >
           <FaUsers />
-          Friends
+          Followers
         </NavLink>
         <p className='font14 opacity05' style={{ padding: '0.2rem', display: 'flex', gap: '1rem', alignItems: 'center', }}>
           <TfiGallery />
           Photos
         </p>
 
-        <NavLink className='font14 opacity05' to='/edit_profile' style={{ padding: '0.2rem', display: 'flex', gap: '1rem', alignItems: 'center', color: '#fff', textDecoration: 'none' }} >
+        <NavLink className='font14 opacity05' to='/profile/edit_profile' style={{ padding: '0.2rem', display: 'flex', gap: '1rem', alignItems: 'center', color: '#fff', textDecoration: 'none' }} >
           <FaEdit />
-          Edit profile
+          {currentUser?.data?.type === 'company' ? 'Edit company profile' : 'Edit profile'}
         </NavLink>
 
-        <NavLink className='font14 opacity05' to='/add_experience' style={{ padding: '0.2rem', display: 'flex', gap: '1rem', alignItems: 'center', color: '#fff', textDecoration: 'none' }} >
+        {currentUser?.data?.type === 'individual' && <NavLink className='font14 opacity05' to='/profile/add_experience' style={{ padding: '0.2rem', display: 'flex', gap: '1rem', alignItems: 'center', color: '#fff', textDecoration: 'none' }} >
           <FaEdit />
           Add work experience
-        </NavLink>
+        </NavLink>}
+        {
+          currentUser?.data?.type === 'company' && <NavLink className='font14 opacity05' to='/profile/add_job' style={{ padding: '0.2rem', display: 'flex', gap: '1rem', alignItems: 'center', color: '#fff', textDecoration: 'none' }} >
+            <FaEdit />
+            Add new jobs
+          </NavLink>
+        }
       </div>
 
       <div style={{ color: '#fff' }}>
