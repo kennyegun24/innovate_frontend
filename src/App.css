@@ -5,8 +5,8 @@
 }
 
 :root {
-  --mainColor: #2F3B50;
-  --secondaryColor: #151A23;
+  --mainColor: #2f3b50;
+  --secondaryColor: #151a23;
   --primaryColor: #202836;
   --white: #fff;
   --100vh: 100vh;
@@ -22,6 +22,7 @@
   --center: center;
   --end: flex-end;
   --start: flex-start;
+  --10px: 10px;
   --12px: 12px;
   --14px: 14px;
   --16px: 16px;
@@ -45,6 +46,10 @@
 
 /* --------Font sizes------- */
 
+.font10 {
+  font-size: var(--10px);
+}
+
 .font12 {
   font-size: var(--12px);
 }
@@ -62,7 +67,6 @@
 }
 
 /* --------Font sizes end------- */
-
 
 /* --------Flex------- */
 
@@ -104,7 +108,6 @@
 
 /* --------Flex end------- */
 
-
 /* --------Colors and backgrounds------- */
 
 .darkBlue {
@@ -125,15 +128,14 @@
 
 /* --------Colors and backgrounds end------- */
 
-
 /* --------Height------- */
 
 .height90vh {
-  height: var(--90vh)
+  height: var(--90vh);
 }
 
 .height100vh {
-  height: var(--100vh)
+  height: var(--100vh);
 }
 
 .height100 {
@@ -145,7 +147,6 @@
 }
 
 /* --------Height end------- */
-
 
 /* --------Width------- */
 .width50 {
@@ -169,7 +170,6 @@
 }
 
 /* --------Width end------- */
-
 
 /* --------padding------- */
 
@@ -267,7 +267,7 @@
   text-decoration: none;
 }
 
-@media(min-width: 1440px) {
+@media (min-width: 1440px) {
   .mainAppDiv {
     background: var(--mainColor);
     width: 100%;
