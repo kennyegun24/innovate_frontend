@@ -1,0 +1,81 @@
+.searchBox {
+  border: 1px solid #111;
+}
+
+/* ------------- Sewarch page --------------- */
+
+.searchUsersDiv {
+  .searchUsersSmDiv {
+    border: 1px solid #2f3b50;
+    border-radius: 8px;
+    .postCardDiv {
+      border-bottom: 2px solid #2f3b50;
+      border-top: 2px solid #2f3b50;
+      margin-top: 1rem;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+    .searchUserFollowButton {
+      border: 1px solid #fff;
+      padding: 0.5rem;
+      border-radius: 6rem;
+      background-color: var(--primaryColor);
+      color: #fff;
+      transition: all ease-in-out 0.3s;
+    }
+    .searchUserFollowButton:hover {
+      background-color: var(--white);
+      border: 1px solid var(--primaryColor);
+      color: var(--primaryColor);
+      transition: all ease-in-out 0.5s;
+    }
+    .searchJobs {
+      .searchJobsImage {
+        height: 50px;
+        width: 50px;
+      }
+      .searchJobSmDiv {
+        border-bottom: 2px solid #2f3b50;
+      }
+      .searchJobLine {
+        border: 2px solid #2f3b50;
+      }
+    }
+    .searchUsersSm2Div {
+      .swiper-button-prev,
+      .swiper-button-next {
+        color: #fff;
+        background: #2f3b50;
+        border-radius: 50%;
+        padding: 10px;
+        height: 30px;
+        width: 30px;
+      }
+      .swiper-button-prev:after,
+      .swiper-button-next:after {
+        font-size: 25px;
+      }
+      .searchUsers {
+        color: #fff;
+        border: 1px solid #2f3b50;
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+        border-radius: 8px;
+        .img {
+          height: 5rem;
+          width: 5rem;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+        .searchUserName {
+          font-size: 16px;
+        }
+        .searchUserHeader {
+          font-size: 14px;
+          line-height: 24px;
+        }
+      }
+    }
+  }
+}
