@@ -1,18 +1,17 @@
-import React from 'react'
-import ProfileHeader from '../profile/ProfileHeader'
-import FriendList from '../../components/friends/FriendList'
+import React from "react";
+import ProfileHeader from "../profile/ProfileHeader";
+import FriendList from "../../components/friends/FriendList";
 
 const Friends = () => {
-    return (
-        <div className='flex' >
-            <div className='profileMainDiv' >
-                <ProfileHeader />
+  return (
+    <div className="flex">
+      <div className="profileMainDiv">
+        <ProfileHeader />
 
-                <FriendList />
-            </div>
+        <FriendList />
+      </div>
+    </div>
+  );
+};
 
-        </div>
-    )
-}
-
-export default Friends
+export default Friends;

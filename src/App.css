@@ -16,7 +16,11 @@
   --80: 80%;
   --70: 70%;
   --50: 50%;
+  --30: 30%;
+  --40: 40%;
+  --35: 35%;
   --2: 2%;
+  --5: 5%;
   --flex: flex;
   --column: column;
   --center: center;
@@ -42,6 +46,10 @@
 
 .no-scroll {
   overflow: hidden;
+}
+
+.scrollX {
+  overflow-x: auto;
 }
 
 /* --------Font sizes------- */
@@ -86,6 +94,10 @@
   align-items: var(--center);
 }
 
+.align_start {
+  align-items: var(--start);
+}
+
 .justify_end {
   justify-content: var(--end);
 }
@@ -126,6 +138,10 @@
   background: var(--primaryColor);
 }
 
+.blue {
+  color: #5596e6;
+}
+
 /* --------Colors and backgrounds end------- */
 
 /* --------Height------- */
@@ -146,6 +162,9 @@
   height: fit-content;
 }
 
+.min90VhHeight {
+  min-height: 90vh;
+}
 /* --------Height end------- */
 
 /* --------Width------- */
@@ -169,6 +188,26 @@
   width: var(--90);
 }
 
+.maxWidth100 {
+  width: 50%;
+}
+
+.width30 {
+  width: var(--30);
+}
+
+.width40 {
+  width: var(--40);
+}
+
+.width35 {
+  width: var(--35);
+}
+
+.width_fit {
+  width: fit-content;
+}
+
 /* --------Width end------- */
 
 /* --------padding------- */
@@ -183,6 +222,21 @@
 
 .padding2rem {
   padding: var(--2rem);
+}
+
+.paddingLeft2rem {
+  padding-left: var(--2rem);
+}
+
+.paddingLeft5 {
+  padding-left: var(--5);
+}
+
+.paddingRight2rem {
+  padding-right: var(--2rem);
+}
+.paddingTop1Rem {
+  padding-top: var(--1rem);
 }
 
 .padding3rem {
@@ -219,6 +273,10 @@
 
 .marginBtm3rem {
   margin-bottom: var(--3rem);
+}
+
+.margin_auto {
+  margin: auto;
 }
 
 /* --------margin end------- */
@@ -265,6 +323,10 @@
 
 .decoration_none {
   text-decoration: none;
+}
+
+.decoration_underline {
+  text-decoration: underline;
 }
 
 @media (min-width: 1440px) {

@@ -278,9 +278,12 @@ const SearchPage = () => {
                 </div>
               );
             })}
-            <button className="searchUserFollowButton pointer">
+            <Link
+              to={`/search/posts?query=${getSearchItem}`}
+              className="searchUserFollowButton decoration_none textCenter pointer"
+            >
               See all results
-            </button>
+            </Link>
           </>
         </div>
 
@@ -305,9 +308,12 @@ const SearchPage = () => {
               </div>
             </div>
           ))}
-          <button className="searchUserFollowButton pointer">
+          <Link
+            to={`/search/jobs?query=${getSearchItem}`}
+            className="searchUserFollowButton decoration_none textCenter pointer"
+          >
             See all results
-          </button>
+          </Link>
         </div>
       </div>
     </div>

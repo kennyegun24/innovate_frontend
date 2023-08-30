@@ -22,6 +22,7 @@
       background-color: var(--primaryColor);
       color: #fff;
       transition: all ease-in-out 0.3s;
+      font-size: 14px;
     }
     .searchUserFollowButton:hover {
       background-color: var(--white);

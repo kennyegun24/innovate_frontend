@@ -21,7 +21,6 @@ import { resetState } from "./redux/auth_redux/post/post";
 import { resetWorkExerience } from "./redux/workexperieence/workexperience";
 import OtherUserProfile from "./pages/otherUser/OtherUserProfile";
 import JobDetails from "./pages/jobs/JobsPage";
-import AllJobs from "./pages/jobs/AllJobs";
 import JobApplicationForm from "./pages/jobs/JobApplicationForm";
 import Store from "./pages/store/Store";
 import Blog from "./pages/blog/Blog";
@@ -32,7 +31,6 @@ import AllChats from "./components/chats/AllChats";
 import ChatContent from "./components/chats/ChatContent";
 import Notification from "./pages/notification/Notification";
 import SuggestedUsers from "./pages/suggestedUsers/SuggestedUsers";
-// import CompanyProfile from './pages/company_profile/CompanyProfile';
 import CompanyOpenJobs from "./pages/company_profile/CompanyOpenJobs";
 import ProfileHeader from "./pages/company_profile/ProfileHeader";
 import BasicInfo from "./pages/company_profile/BasicInfo";
@@ -45,6 +43,10 @@ import AboutCompany from "./pages/company_profile/AboutCompany";
 import AddNewJob from "./pages/company_profile/AddNewJob";
 import WrongLocation from "./pages/404/WrongLocation";
 import ProfileNav from "./pages/profile/ProfileNav";
+import SearchPage from "./components/search/SearchPage";
+import PostResults from "./components/search/PostResults";
+import AllSearchedJobs from "./components/search/AllSearchedJobs";
+import AllAvailableJobs from "./pages/jobs/AllAvailableJobs";
 
 function App() {
   const { currentUser, detailsError } = useSelector((state) => state.user);
@@ -119,6 +121,8 @@ function App() {
             path="/user/:name/:id/profile"
             element={<OtherUserProfile />}
           />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/search/posts" element={<PostResults />} />
           <Route path="/post_details/:id" element={<PostsDetails />} />
           <Route path="/store" element={<Store />} />
           <Route path="/suggested_users" element={<SuggestedUsers />} />
@@ -206,7 +210,7 @@ function App() {
             element={
               <div className="jobs-container">
                 <div className="job-component scrollBar">
-                  <AllJobs />
+                  <AllAvailableJobs />
                 </div>
                 <div className="job-posts-details scrollBar">
                   <Outlet />
@@ -217,6 +221,29 @@ function App() {
             <Route path="/jobs/:company_name/:id" element={<JobDetails />} />
             <Route
               path="/jobs/:company_name/:id/apply"
+              element={<JobApplicationForm />}
+            />
+          </Route>
+
+          <Route
+            path={"/search/jobs"}
+            element={
+              <div className="jobs-container">
+                <div className="job-component scrollBar">
+                  <AllSearchedJobs />
+                </div>
+                <div className="job-posts-details scrollBar">
+                  <Outlet />
+                </div>
+              </div>
+            }
+          >
+            <Route
+              path="/search/jobs/:company_name/:id"
+              element={<JobDetails />}
+            />
+            <Route
+              path="/search/jobs/:company_name/:id/apply"
               element={<JobApplicationForm />}
             />
           </Route>
