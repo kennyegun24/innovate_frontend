@@ -1,10 +1,10 @@
 import React from "react";
 import vic from "../../images/vic.jpg";
 import kenny from "../../images/kenny.png";
-import musk from "../../images/musk.jpg";
-import kim from "../../images/kim.jpg";
-import trump from "../../images/trump.png";
-import gates from "../../images/gates.jpg";
+// import musk from "../../images/musk.jpg";
+// import kim from "../../images/kim.jpg";
+// import trump from "../../images/trump.png";
+// import gates from "../../images/gates.jpg";
 import PostOptions from "../interractions/PostOptions";
 import { FaShare } from "react-icons/fa";
 import Likes from "../interractions/Likes";
@@ -14,14 +14,14 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import LazyImage from "../lazyimage/LazyImage";
 const PostResults = () => {
-  const getUrl = document.location.search;
-  const getSearchItem = getUrl
-    .split("?")
-    .join("")
-    .split("query")
-    .join("")
-    .split("=")
-    .join("");
+  // const getUrl = document.location.search;
+  // const getSearchItem = getUrl
+  //   .split("?")
+  //   .join("")
+  //   .split("query")
+  //   .join("")
+  //   .split("=")
+  //   .join("");
   const allPosts = [
     {
       creator_name: "Kenny Elias",
@@ -153,6 +153,59 @@ const PostResults = () => {
             );
           })}
         </>
+      </div>
+
+      <div className="relative">
+        <div className="white sticky top10 flex column gap05rem job_filter_sm_div paddingLeft2rem paddingTop1Rem ">
+          <h3>Posts filter</h3>
+          <div className="flex column gap1rem font12 weight700 job_filter_sm_div2 padding2rem">
+            <label className="flex align_center" htmlFor="popularityUp">
+              <input
+                className="marginRight05rem"
+                type="radio"
+                name="sorting"
+                id="popularityUp"
+              />
+              Popularity Up-Down
+            </label>
+            <label className="flex align_center" htmlFor="popularityDown">
+              <input
+                className="marginRight05rem"
+                type="radio"
+                name="sorting"
+                id="popularityDown"
+              />
+              Popularity Down-Up
+            </label>
+            <label className="flex align_center" htmlFor="dateUp">
+              <input
+                className="marginRight05rem"
+                type="radio"
+                name="sorting"
+                id="dateUp"
+              />
+              Date Up-Down
+            </label>
+            <label className="flex align_center" htmlFor="dateDown">
+              <input
+                className="marginRight05rem"
+                type="radio"
+                name="sorting"
+                id="dateDown"
+              />
+              Date Down-Up
+            </label>
+            <label className="flex align_center" htmlFor="none">
+              <input
+                className="marginRight05rem"
+                type="radio"
+                name="sorting"
+                id="none"
+              />
+              None
+            </label>
+          </div>
+        </div>
       </div>
     </div>
   );

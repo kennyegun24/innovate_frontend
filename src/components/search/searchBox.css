@@ -80,3 +80,15 @@
     }
   }
 }
+
+/* -------------- POST RESULTS ---------------- */
+.job_filter_sm_div {
+  border: 1px solid #2f3b50;
+  border-radius: 6px;
+}
+
+.job_filter_sm_div2 {
+  border: 1px solid #2f3b50;
+  border-right: none;
+  border-radius: 6px 0 6px 0;
+}
