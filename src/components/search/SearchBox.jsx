@@ -1,7 +1,7 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
-const SearchBox = () => {
+const SearchBox = ({ setShow }) => {
   return (
     <div
       style={{
@@ -17,6 +17,7 @@ const SearchBox = () => {
         top: "10vh",
         left: 0,
       }}
+      onClick={() => setShow(false)}
     >
       <div
         style={{

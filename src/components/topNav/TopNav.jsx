@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FaBlogger, FaUsers } from "react-icons/fa";
 import { BiHomeHeart, BiMessage, BiShoppingBag } from "react-icons/bi";
 import { BsBell } from "react-icons/bs";
@@ -12,6 +12,22 @@ import SearchBox from "../search/SearchBox";
 const TopNav = () => {
   const { currentUser, userDetails } = useSelector((state) => state.user);
   const [show, setShow] = useState(false);
+  const hidePopRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (hidePopRef.current && !hidePopRef.current.contains(event.target)) {
+        setShow(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="topNavMainDiv mainBackground justify_between align_center flex">
       <div className="flex align_center gap15rem">
@@ -43,14 +59,17 @@ const TopNav = () => {
           <FaBlogger className="icons" />
         </NavLink>
       </div>
-      <div className="flex align_center gap15rem topNavSearchDiv ">
+      <div
+        className="flex align_center gap15rem topNavSearchDiv "
+        ref={hidePopRef}
+      >
         <input
           onClick={() => setShow(!show)}
           className="width100 padding05rem topNavSearchInput"
           type="text"
           placeholder="Search....."
         />
-        {show && <SearchBox />}
+        {show && <SearchBox setShow={setShow} />}
         <NavLink to="/profile">
           <div style={{ position: "relative" }}>
             <img
