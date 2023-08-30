@@ -1,9 +1,9 @@
 import React from "react";
-import vic from "../../images/kenny.png";
+// import vic from "../../images/kenny.png";
 import image from "../../images/screen-0.jpg";
 import { AiOutlineEdit } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { numberFormat } from "../../helpers/general";
 
 const ProfileHeader = ({ data }) => {

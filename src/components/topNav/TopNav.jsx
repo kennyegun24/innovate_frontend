@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import {
-  FaBell,
-  FaBlogger,
-  FaHeart,
-  FaInbox,
-  FaMailchimp,
-  FaUsers,
-} from "react-icons/fa";
+import { FaBlogger, FaUsers } from "react-icons/fa";
 import { BiHomeHeart, BiMessage, BiShoppingBag } from "react-icons/bi";
-import { AiOutlineMail, AiOutlineHeart } from "react-icons/ai";
-import { BsBell, BsTwitter } from "react-icons/bs";
+import { BsBell } from "react-icons/bs";
 import "./topnav.css";
 import noImage from "../../images/noImage.png";
 import { NavLink } from "react-router-dom";
