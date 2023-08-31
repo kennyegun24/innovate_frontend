@@ -76,3 +76,20 @@
   height: 100vh;
   width: 100%;
 }
+
+.companyProfileButton {
+  border: 1px solid #fff;
+  padding: 0.5rem;
+  border-radius: 6rem;
+  background-color: var(--primaryColor);
+  color: #fff;
+  transition: all ease-in-out 0.3s;
+  font-size: 14px;
+  margin-top: 0.5rem;
+}
+.companyProfileButton:hover {
+  background-color: var(--white);
+  border: 1px solid var(--primaryColor);
+  color: var(--primaryColor);
+  transition: all ease-in-out 0.5s;
+}
