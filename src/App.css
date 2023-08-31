@@ -5,23 +5,29 @@
 }
 
 :root {
-  --mainColor: #2F3B50;
-  --secondaryColor: #151A23;
+  --mainColor: #2f3b50;
+  --secondaryColor: #151a23;
   --primaryColor: #202836;
   --white: #fff;
   --100vh: 100vh;
   --90vh: 90vh;
+  --20vh: 20vh;
   --100: 100%;
   --90: 90%;
   --80: 80%;
   --70: 70%;
   --50: 50%;
+  --30: 30%;
+  --40: 40%;
+  --35: 35%;
   --2: 2%;
+  --5: 5%;
   --flex: flex;
   --column: column;
   --center: center;
   --end: flex-end;
   --start: flex-start;
+  --10px: 10px;
   --12px: 12px;
   --14px: 14px;
   --16px: 16px;
@@ -43,7 +49,15 @@
   overflow: hidden;
 }
 
+.scrollX {
+  overflow-x: auto;
+}
+
 /* --------Font sizes------- */
+
+.font10 {
+  font-size: var(--10px);
+}
 
 .font12 {
   font-size: var(--12px);
@@ -61,8 +75,11 @@
   font-size: var(--18px);
 }
 
-/* --------Font sizes end------- */
+.weight700 {
+  font-weight: 700;
+}
 
+/* --------Font sizes end------- */
 
 /* --------Flex------- */
 
@@ -80,6 +97,10 @@
 
 .align_center {
   align-items: var(--center);
+}
+
+.align_start {
+  align-items: var(--start);
 }
 
 .justify_end {
@@ -104,7 +125,6 @@
 
 /* --------Flex end------- */
 
-
 /* --------Colors and backgrounds------- */
 
 .darkBlue {
@@ -123,17 +143,20 @@
   background: var(--primaryColor);
 }
 
-/* --------Colors and backgrounds end------- */
+.blue {
+  color: #5596e6;
+}
 
+/* --------Colors and backgrounds end------- */
 
 /* --------Height------- */
 
 .height90vh {
-  height: var(--90vh)
+  height: var(--90vh);
 }
 
 .height100vh {
-  height: var(--100vh)
+  height: var(--100vh);
 }
 
 .height100 {
@@ -144,8 +167,10 @@
   height: fit-content;
 }
 
+.min90VhHeight {
+  min-height: 90vh;
+}
 /* --------Height end------- */
-
 
 /* --------Width------- */
 .width50 {
@@ -168,8 +193,27 @@
   width: var(--90);
 }
 
-/* --------Width end------- */
+.maxWidth100 {
+  width: 50%;
+}
 
+.width30 {
+  width: var(--30);
+}
+
+.width40 {
+  width: var(--40);
+}
+
+.width35 {
+  width: var(--35);
+}
+
+.width_fit {
+  width: fit-content;
+}
+
+/* --------Width end------- */
 
 /* --------padding------- */
 
@@ -183,6 +227,21 @@
 
 .padding2rem {
   padding: var(--2rem);
+}
+
+.paddingLeft2rem {
+  padding-left: var(--2rem);
+}
+
+.paddingLeft5 {
+  padding-left: var(--5);
+}
+
+.paddingRight2rem {
+  padding-right: var(--2rem);
+}
+.paddingTop1Rem {
+  padding-top: var(--1rem);
 }
 
 .padding3rem {
@@ -219,6 +278,14 @@
 
 .marginBtm3rem {
   margin-bottom: var(--3rem);
+}
+
+.marginRight05rem {
+  margin-right: var(--05rem);
+}
+
+.margin_auto {
+  margin: auto;
 }
 
 /* --------margin end------- */
@@ -263,11 +330,23 @@
   position: relative;
 }
 
+.sticky {
+  position: sticky;
+}
+
+.top10 {
+  top: var(--20vh);
+}
+
 .decoration_none {
   text-decoration: none;
 }
 
-@media(min-width: 1440px) {
+.decoration_underline {
+  text-decoration: underline;
+}
+
+@media (min-width: 1440px) {
   .mainAppDiv {
     background: var(--mainColor);
     width: 100%;
