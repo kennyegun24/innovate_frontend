@@ -47,6 +47,7 @@ import SearchPage from "./components/search/SearchPage";
 import PostResults from "./components/search/PostResults";
 import AllSearchedJobs from "./components/search/AllSearchedJobs";
 import AllAvailableJobs from "./pages/jobs/AllAvailableJobs";
+import CompanyJobs from "./components/company/CompanyJobs";
 
 function App() {
   const { currentUser, detailsError } = useSelector((state) => state.user);
@@ -158,6 +159,7 @@ function App() {
             <Route path="/profile/edit_profile" element={<EditProfile />} />
             <Route path="/profile/about" element={<About />} />
             <Route path="/profile/friends" element={<Friends />} />
+            <Route path="/profile/jobs" element={<CompanyJobs />} />
           </Route>
 
           <Route
