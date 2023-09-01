@@ -352,10 +352,12 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
   }
 
   .mainAppSmDiv {
     width: 80%;
+    min-height: 100vh;
+    height: 100%;
   }
 }

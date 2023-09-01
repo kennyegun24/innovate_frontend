@@ -7,7 +7,7 @@ const SearchBox = ({ setShow }) => {
       style={{
         // position: "fixed",
         position: "absolute",
-        zIndex: 3,
+        zIndex: 999,
         width: "100%",
         background: "rgba(1, 15, 34, 0.6)",
         height: "90vh",
@@ -25,6 +25,7 @@ const SearchBox = ({ setShow }) => {
           width: "35%",
           marginRight: "5%",
           color: "#fff",
+          zIndex: 999,
         }}
         className="mainBackground padding1rem flex column gap15rem font14"
       >

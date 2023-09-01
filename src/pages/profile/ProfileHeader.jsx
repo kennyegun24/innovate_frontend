@@ -9,6 +9,11 @@ import { numberFormat } from "../../helpers/general";
 const ProfileHeader = ({ data }) => {
   const url = document.location.pathname;
   // console.log(url);
+  const currentUser = {
+    data: {
+      type: "company",
+    },
+  };
   return (
     <>
       <img className="profileCoverImage" src={image} alt="" />
@@ -46,16 +51,23 @@ const ProfileHeader = ({ data }) => {
           <h2>{numberFormat(data?.followers_count)} </h2>
           <p className="opacity05">Followers</p>
         </div>
-        {url === "/userprofile" ? (
-          <NavLink className="profileTmAbBtns" to="/edit_profile">
-            <AiOutlineEdit />
-            Edit Profile
-          </NavLink>
-        ) : (
-          <button className="profileFollowtns" to="/edit_profile">
-            Follow
-          </button>
-        )}
+        <div className="profileFirstBtnsDiv">
+          {currentUser.data.type === "company" && (
+            <NavLink className="profileTmAbBtns" to="/profile/jobs">
+              All jobs
+            </NavLink>
+          )}
+          {url === "/profile" ? (
+            <NavLink className="profileTmAbBtns" to="/profile/edit_profile">
+              <AiOutlineEdit />
+              Profile
+            </NavLink>
+          ) : (
+            <button className="profileFollowtns" to="/profile/edit_profile">
+              Follow
+            </button>
+          )}
+        </div>
       </div>
     </>
   );
