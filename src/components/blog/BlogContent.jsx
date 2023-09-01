@@ -103,7 +103,7 @@ const BlogContent = () => {
           }}
         >
           <div className="blogUserPostImageDiv">
-            <img className="blogUserPostImage" src={each.image} />
+            <img alt="" className="blogUserPostImage" src={each.image} />
           </div>
           <Link
             to={`/blog/${each.id}`}
