@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import "./chatContent.css";
-import image from "../../images/noImage.png";
-import { FaEllipsisV } from "react-icons/fa";
-import ChatOptions from "./ChatOptions";
 import ChatInput from "./ChatInput";
+import ChatHeader from "./chatHeader";
 
 const ChatContent = () => {
   const currentUserId = 1;
-  const [show, setShow] = useState(false);
   const chats = [
     {
       message: "oMCTngZ AnK tIVyq WISdLq lb uBdXUYW",
@@ -95,31 +92,10 @@ const ChatContent = () => {
       sender_id: 1,
     },
   ];
-  const url = document.location.pathname.split("/")[2];
-  const userName = url.split("%20").join(" ");
-  console.log(userName);
+
   return (
     <div className="chatContentMainDiv">
-      <div className="chatContentHeaderDiv">
-        <div className="flex align_center gap1rem">
-          <img src={image} alt="" className="chatContentHeaderImage" />
-          <div>
-            <h4>{userName}</h4>
-            <p className="font12 opacity05">20mins ago</p>
-          </div>
-        </div>
-        <div className="relative">
-          <FaEllipsisV
-            style={{ cursor: "pointer" }}
-            onClick={() => setShow(!show)}
-          />
-          {show && (
-            <div style={{ zIndex: 5 }}>
-              <ChatOptions />
-            </div>
-          )}
-        </div>
-      </div>
+      <ChatHeader />
       <div className="scrollBar chatContentMessagesContainer">
         {chats.map((message) => (
           <div
