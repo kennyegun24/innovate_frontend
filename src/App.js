@@ -48,6 +48,7 @@ import PostResults from "./components/search/PostResults";
 import AllSearchedJobs from "./components/search/AllSearchedJobs";
 import AllAvailableJobs from "./pages/jobs/AllAvailableJobs";
 import CompanyJobs from "./components/company/CompanyJobs";
+import UserBlogs from "./components/blog/UserBlogs";
 
 function App() {
   const { currentUser, detailsError } = useSelector((state) => state.user);
@@ -206,6 +207,7 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/blog/create_blog_post" element={<BlogWrite />} />
+            <Route path="/blog/:user/all" element={<UserBlogs />} />
           </Route>
           <Route
             path="/jobs"
