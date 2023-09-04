@@ -64,7 +64,7 @@ const FriendList = () => {
     },
   ];
   return (
-    <div className="marginTop15 marginBtm15 width90">
+    <div className="marginTop15 marginBtm15 width100">
       <h4 className="mainBackground white padding05rem">All Followers</h4>
       <Row gutters={[32, 32]}>
         {data &&
