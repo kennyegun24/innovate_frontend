@@ -1,13 +1,10 @@
 import React from "react";
-import ProfileHeader from "../profile/ProfileHeader";
 import FriendList from "../../components/friends/FriendList";
 
 const Friends = () => {
   return (
     <div className="flex">
-      <div className="profileMainDiv">
-        <ProfileHeader />
-
+      <div className="">
         <FriendList />
       </div>
     </div>

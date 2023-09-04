@@ -1,18 +1,13 @@
 import React from "react";
-import kenny from "../../images/kenny.png";
-import { FaCamera, FaEdit, FaUser, FaUsers } from "react-icons/fa";
+import { FaEdit, FaUser, FaUsers } from "react-icons/fa";
 import { TfiGallery } from "react-icons/tfi";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const ProfileNav = () => {
   const { userDetails } = useSelector((state) => state.user);
-  const currentUser = {
-    data: {
-      type: "company",
-      // type: 'individual',
-    },
-  };
+
+  const { currentUser } = useSelector((state) => state.user);
 
   return (
     <div
