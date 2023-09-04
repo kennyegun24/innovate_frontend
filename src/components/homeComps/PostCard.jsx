@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import image5 from "../../images/screen-3.jpg";
-import { FaShare, FaEllipsisV } from "react-icons/fa";
+import { FaShare } from "react-icons/fa";
 import Likes from "../interractions/Likes";
 import Comments from "../interractions/Comments";
 import { useSelector } from "react-redux";
@@ -106,7 +105,7 @@ const PostCard = () => {
             const formatDate = created_at;
             const formattedDate = moment(formatDate).fromNow();
             return (
-              <div className="postCardDiv" key={index}>
+              <div className="postCardDiv padding1rem" key={index}>
                 <div className="flxCnterBtwn">
                   <div className="postUserInfo">
                     <Link
@@ -115,6 +114,7 @@ const PostCard = () => {
                           ? "/userprofile"
                           : `/user/${creator_name}/${author_id}/profile`
                       }
+                      className="flex white decoration_none gap05rem"
                     >
                       <img
                         src={creator_image}
