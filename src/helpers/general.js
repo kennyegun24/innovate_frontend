@@ -23,3 +23,17 @@ export const numberFormat = (data) => {
   }
   return followCount;
 };
+
+export const company_capacity_converter = (data) => {
+  let capacity = "";
+  if (data >= 1 && data <= 99) {
+    capacity = "1 - 100";
+  } else if (data >= 100 && data <= 249) {
+    capacity = "100 - 250";
+  } else if (data >= 250 && data <= 499) {
+    capacity = "250 - 500";
+  } else {
+    capacity = "500+";
+  }
+  return capacity;
+};
