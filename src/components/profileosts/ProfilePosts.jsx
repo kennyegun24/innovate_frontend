@@ -52,17 +52,28 @@ const ProfilePosts = ({ data }) => {
     }
   };
 
+  const handleNoSorting = () => {
+    setNewData(data);
+  };
+
   return (
     <div style={{ width: "100%" }}>
       <div className="profilePostsHeaderDiv">
         <h4 className="font16 weight500">Posts</h4>
 
         <div className="flex gap1rem">
+          <button
+            onClick={handleNoSorting}
+            className="profilePostsButton pointer"
+          >
+            Normal
+          </button>
+
           <select
             onChange={handleSortPopular}
             name="popularity"
             id=""
-            className="profilePostsButton"
+            className="profilePostsButton pointer width_fit"
           >
             <option value="Popularity">Popularity</option>
             <option value="less-popular - more-popular">
@@ -77,7 +88,7 @@ const ProfilePosts = ({ data }) => {
             onChange={handleSortRecent}
             name="Recent"
             id=""
-            className="profilePostsButton"
+            className="profilePostsButton pointer"
           >
             <option value="Recent">Recent</option>
             <option value="less-popular - more-popular">
