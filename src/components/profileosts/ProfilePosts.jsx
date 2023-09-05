@@ -18,14 +18,75 @@ const ProfilePosts = ({ data }) => {
     [navigate]
   );
 
+  const [newData, setNewData] = useState(data);
+
+  const handleSortPopular = (e) => {
+    const sortedPopular = [...newData];
+    if (e.target.value === "more-popular - less-popular") {
+      sortedPopular.sort(
+        (a, b) =>
+          b.likes_count + b.comments_count - (a.likes_count + a.comments_count)
+      );
+      setNewData(sortedPopular);
+    } else if (e.target.value === "less-popular - more-popular") {
+      sortedPopular.sort(
+        (a, b) =>
+          a.likes_count + a.comments_count - (b.likes_count + b.comments_count)
+      );
+      setNewData(sortedPopular);
+    }
+  };
+
+  const handleSortRecent = (e) => {
+    const sortedRecent = [...newData];
+    if (e.target.value === "more-popular - less-popular") {
+      sortedRecent.sort(
+        (a, b) => new Date(a.created_at) - new Date(b.created_at)
+      );
+      setNewData(sortedRecent);
+    } else if (e.target.value === "less-popular - more-popular") {
+      sortedRecent.sort(
+        (a, b) => new Date(b.created_at) - new Date(a.created_at)
+      );
+      setNewData(sortedRecent);
+    }
+  };
+
   return (
     <div style={{ width: "100%" }}>
       <div className="profilePostsHeaderDiv">
         <h4 className="font16 weight500">Posts</h4>
 
         <div className="flex gap1rem">
-          <button className="profilePostsButton">Recent</button>
-          <button className="profilePostsButton">Popular</button>
+          <select
+            onChange={handleSortPopular}
+            name="popularity"
+            id=""
+            className="profilePostsButton"
+          >
+            <option value="Popularity">Popularity</option>
+            <option value="less-popular - more-popular">
+              Least - Most popular
+            </option>
+            <option value="more-popular - less-popular">
+              Most - Least popular
+            </option>
+          </select>
+
+          <select
+            onChange={handleSortRecent}
+            name="Recent"
+            id=""
+            className="profilePostsButton"
+          >
+            <option value="Recent">Recent</option>
+            <option value="less-popular - more-popular">
+              Least - Most recent
+            </option>
+            <option value="more-popular - less-popular">
+              Most - Least recent
+            </option>
+          </select>
         </div>
       </div>
       <div style={{ width: "80%" }}>
@@ -37,7 +98,7 @@ const ProfilePosts = ({ data }) => {
             setPreview={setPreview}
           />
         )}
-        {data.map((each) => {
+        {newData.map((each) => {
           const {
             id,
             created_at,
@@ -77,7 +138,11 @@ const ProfilePosts = ({ data }) => {
                 <div
                   className="postImageDiv"
                   onClick={() =>
-                    setModal({ image: image, author: creator_name, text: text })
+                    setModal({
+                      image: image,
+                      author: creator_name,
+                      text: text,
+                    })
                   }
                 >
                   <LazyImage image={image} setPreview={setPreview} />
