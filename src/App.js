@@ -6,7 +6,7 @@ import Login from "./pages/auth/Login";
 // import Register from './pages/auth/Register';
 import Homepage from "./pages/homepage/Homepage";
 import UserProfile from "./pages/profile/Profile";
-import About from "./pages/profile/About";
+import About from "./components/profile/About";
 import PostsDetails from "./components/PostsDetails";
 import Friends from "./pages/friends/Friends";
 import EditProfile from "./pages/editProfile/EditProfile";
@@ -32,13 +32,9 @@ import ChatContent from "./components/chats/ChatContent";
 import Notification from "./pages/notification/Notification";
 import SuggestedUsers from "./pages/suggestedUsers/SuggestedUsers";
 import CompanyOpenJobs from "./pages/company_profile/CompanyOpenJobs";
-import ProfileHeader from "./pages/company_profile/ProfileHeader";
-import BasicInfo from "./pages/company_profile/BasicInfo";
-import {
-  getOtherUserDetails,
-  getOtherUserPosts,
-} from "./redux/auth_redux/otherUser/otherUser";
-import ProfilePosts from "./pages/company_profile/ProfilePosts";
+import CompanyProfileHeader from "./pages/company_profile/CompanyProfileHeader";
+import CompanyBasicInfo from "./pages/company_profile/CompanyBasicInfo";
+import CompanyProfilePosts from "./pages/company_profile/CompanyProfilePosts";
 import AboutCompany from "./pages/company_profile/AboutCompany";
 import AddNewJob from "./pages/company_profile/AddNewJob";
 import WrongLocation from "./pages/404/WrongLocation";
@@ -48,6 +44,13 @@ import PostResults from "./components/search/PostResults";
 import AllSearchedJobs from "./components/search/AllSearchedJobs";
 import AllAvailableJobs from "./pages/jobs/AllAvailableJobs";
 import CompanyJobs from "./components/company/CompanyJobs";
+import UserBlogs from "./components/blog/UserBlogs";
+import OtherUserAbout from "./pages/otherUser/OtherUserAbout";
+import OtherUserHeader from "./pages/otherUser/OtherUserHeader";
+import OtherUserBasicInfo from "./pages/otherUser/OtherUserBasicInfo";
+import OtherUsersFriends from "./pages/otherUser/otherUsersFriends";
+import CurrentUserBasicInfo from "./pages/profile/CurrentUserBasicInfo";
+import CurrentUserProfileHeader from "./pages/profile/CurrentUserProfileHeader";
 
 function App() {
   const { currentUser, detailsError } = useSelector((state) => state.user);
@@ -59,9 +62,9 @@ function App() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    currentUser && dispatch(getCurrentUserDetails(currentUser?.data?.token));
-  }, [currentUser, dispatch]);
+  // useEffect(() => {
+  //   currentUser && dispatch(getCurrentUserDetails(currentUser?.data?.token));
+  // }, [currentUser, dispatch]);
 
   useEffect(() => {
     if (
@@ -84,21 +87,21 @@ function App() {
 
   const isLoginPage = location.pathname === "/login";
 
-  const { otherUserPosts, otherUserDetails } = useSelector(
-    (state) => state.otherUserPosts_auth
-  );
-  const link = document.location.pathname;
-  const userId = link.split("/")[3];
-  useEffect(() => {
-    dispatch(
-      getOtherUserPosts({ TOKEN: currentUser?.data?.token, id: userId })
-    );
-    if (currentUser) {
-      dispatch(
-        getOtherUserDetails({ TOKEN: currentUser?.data?.token, id: userId })
-      );
-    }
-  }, [currentUser, userId, dispatch]);
+  // const { otherUserPosts, otherUserDetails } = useSelector(
+  //   (state) => state.otherUserPosts_auth
+  // );
+  // const link = document.location.pathname;
+  // const userId = link.split("/")[3];
+  // useEffect(() => {
+  //   dispatch(
+  //     getOtherUserPosts({ TOKEN: currentUser?.data?.token, id: userId })
+  //   );
+  //   if (currentUser) {
+  //     dispatch(
+  //       getOtherUserDetails({ TOKEN: currentUser?.data?.token, id: userId })
+  //     );
+  //   }
+  // }, [currentUser, userId, dispatch]);
 
   const current_User = {
     data: {
@@ -120,8 +123,39 @@ function App() {
           />
           <Route
             path="/user/:name/:id/profile"
-            element={<OtherUserProfile />}
-          />
+            element={
+              <div className="profileMainDiv">
+                <OtherUserHeader />
+                <div className="profileBasicPostsInfos ">
+                  <div
+                    className="profileBasicInfoMainDiv relative "
+                    style={{ position: "sticky", top: "50vh" }}
+                  >
+                    <OtherUserBasicInfo />
+                  </div>
+                  <div
+                    className="ProfileAllPostsMainDiv"
+                    // style={{ maxHeight: "70vh" }}
+                  >
+                    <Outlet />
+                  </div>
+                </div>
+              </div>
+            }
+          >
+            <Route
+              path="/user/:name/:id/profile"
+              element={<OtherUserProfile />}
+            />
+            <Route
+              path="/user/:name/:id/profile/about"
+              element={<OtherUserAbout />}
+            />
+            <Route
+              path="/user/:name/:id/profile/friends"
+              element={<OtherUsersFriends />}
+            />
+          </Route>
           <Route path="/search" element={<SearchPage />} />
           <Route path="/search/posts" element={<PostResults />} />
           <Route path="/post_details/:id" element={<PostsDetails />} />
@@ -131,16 +165,27 @@ function App() {
           <Route
             path="/profile"
             element={
-              !currentUser ? (
+              currentUser ? (
                 <div style={{ display: "flex", overflow: "hidden" }}>
                   <div style={{ width: "25%", background: "#151A23" }}>
                     <ProfileNav />
                   </div>
-                  <div
-                    className="profileMainDiv"
-                    style={{ width: "100%", overflow: "hidden" }}
-                  >
-                    <Outlet />
+                  <div className="profileMainDiv">
+                    <CurrentUserProfileHeader />
+                    <div className="profileBasicPostsInfos ">
+                      <div
+                        className="profileBasicInfoMainDiv relative "
+                        style={{ position: "sticky", top: "50vh" }}
+                      >
+                        <CurrentUserBasicInfo />
+                      </div>
+                      <div
+                        className="ProfileAllPostsMainDiv"
+                        // style={{ maxHeight: "70vh" }}
+                      >
+                        <Outlet />
+                      </div>
+                    </div>
                   </div>
                 </div>
               ) : (
@@ -166,11 +211,10 @@ function App() {
             path="/company/:id"
             element={
               <div className="profileMainDiv">
-                <ProfileHeader data={otherUserDetails} />
-
+                <CompanyProfileHeader />
                 <div className="profileBasicPostsInfos">
                   <div className="profileBasicInfoMainDiv">
-                    <BasicInfo />
+                    <CompanyBasicInfo />
                   </div>
                   <div
                     className="ProfileAllPostsMainDiv"
@@ -183,10 +227,7 @@ function App() {
             }
           >
             <Route path="/company/:id/jobs" element={<CompanyOpenJobs />} />
-            <Route
-              path="/company/:id/posts"
-              element={<ProfilePosts data={otherUserPosts} />}
-            />
+            <Route path="/company/:id" element={<CompanyProfilePosts />} />
             <Route path="/company/:id/about" element={<AboutCompany />} />
           </Route>
           <Route path="/notifications" element={<Notification />} />
@@ -206,6 +247,7 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogPost />} />
             <Route path="/blog/create_blog_post" element={<BlogWrite />} />
+            <Route path="/blog/:user/all" element={<UserBlogs />} />
           </Route>
           <Route
             path="/jobs"

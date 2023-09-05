@@ -6,12 +6,9 @@ const ChatOptions = () => {
       <div
         style={{
           background: "#202836",
-          padding: "0.5rem",
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem",
           width: "150px",
         }}
+        className="flex column padding05rem font12 gap1rem"
       >
         <p>Clear Chat</p>
         <p>View Profile</p>

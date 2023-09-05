@@ -63,6 +63,7 @@ const PostResults = () => {
   return (
     <div className="flex gap1rem searchUsersDiv primaryColor width100 justify_start paddingLeft5 paddingTop1Rem">
       <div className="padding1rem flex column gap1rem width40 searchUsersSmDiv">
+        <h2 className="white weight700">All posts</h2>
         <>
           {allPosts?.map((each, index) => {
             const {

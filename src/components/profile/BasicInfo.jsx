@@ -10,8 +10,7 @@ import "./basicInfo.css";
 import { useSelector } from "react-redux";
 import { numberFormat } from "../../helpers/general";
 
-const BasicInfo = () => {
-  const { userDetails } = useSelector((state) => state.user);
+const BasicInfo = ({ data }) => {
   return (
     <div className="basicProfileInfo">
       <div className="basicProfileTitleDiv">
@@ -20,22 +19,22 @@ const BasicInfo = () => {
       </div>
 
       <div className="basicProfileInfoDiv">
-        {userDetails?.school && (
+        {data?.school && (
           <div className="basicProfileInfoDivSm">
             <div>
               <h5>Studied at</h5>
-              <p className="opacity05 font12">{userDetails?.school}</p>
+              <p className="opacity05 font12">{data?.school}</p>
             </div>
             <FaGraduationCap />
           </div>
         )}
-        {userDetails?.location && (
+        {data?.location && (
           <>
             <hr />
             <div className="basicProfileInfoDivSm">
               <div>
                 <h5>Lives in</h5>
-                <p className="opacity05 font12">{userDetails?.location}</p>
+                <p className="opacity05 font12">{data?.location}</p>
               </div>
               <FaLocationArrow />
             </div>
@@ -45,7 +44,9 @@ const BasicInfo = () => {
         <div className="basicProfileInfoDivSm">
           <div>
             <h5>Followers</h5>
-            <p className="opacity05 font12">{numberFormat(288378)} followers</p>
+            <p className="opacity05 font12">
+              {numberFormat(data?.followers_count)} followers
+            </p>
           </div>
           <FaUsers />
         </div>
@@ -54,7 +55,7 @@ const BasicInfo = () => {
           <div>
             <h5>Amount of Posts</h5>
             <p className="opacity05 font12">
-              {numberFormat(userDetails?.posts_count)}
+              {numberFormat(data?.posts_count)}
             </p>
           </div>
           <FaBlog />

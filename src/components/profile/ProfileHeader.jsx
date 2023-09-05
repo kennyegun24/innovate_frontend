@@ -3,26 +3,50 @@ import React from "react";
 import image from "../../images/screen-0.jpg";
 import { AiOutlineEdit } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { numberFormat } from "../../helpers/general";
 
 const ProfileHeader = ({ data }) => {
   const url = document.location.pathname;
-  // console.log(url);
-  const currentUser = {
-    data: {
-      type: "company",
-    },
-  };
+  const { currentUser } = useSelector((state) => state.user);
+  const { otherUserDetails } = useSelector(
+    (state) => state.otherUserPosts_auth
+  );
+  console.log(data);
+  const urlPath = url.split("/")[1];
+  console.log(urlPath);
   return (
     <>
       <img className="profileCoverImage" src={image} alt="" />
 
       <div className="profileUserDetails">
         <div className="profileFirstBtnsDiv">
-          <button className="profileTmAbBtns">Timeline</button>
+          {/* <button className="profileTmAbBtns">Timeline</button> */}
 
-          <NavLink className="profileTmAbBtns" to="/profile/about">
+          <NavLink
+            className="profileTmAbBtns"
+            to={
+              // urlPath === "profile"
+              //   ? "about"
+              //   : urlPath === "user"
+              //   ? `about`
+              //   : "about"
+              ""
+            }
+          >
+            Timeline
+          </NavLink>
+          <NavLink
+            className="profileTmAbBtns"
+            to={
+              // urlPath === "profile"
+              //   ? "about"
+              //   : urlPath === "user"
+              //   ? `about`
+              //   : "about"
+              "about"
+            }
+          >
             About
           </NavLink>
         </div>
@@ -38,7 +62,17 @@ const ProfileHeader = ({ data }) => {
         </div>
 
         <div className="profileFirstBtnsDiv">
-          <NavLink className="profileTmAbBtns" to="/profile/friends">
+          <NavLink
+            className="profileTmAbBtns"
+            to={
+              // urlPath === "profile"
+              //   ? "/profile/friends"
+              //   : urlPath === "user"
+              //   ? `/user/${otherUserDetails?.name}/${otherUserDetails?.id}/profile/friends`
+              //   : ""
+              "friends"
+            }
+          >
             Friends
           </NavLink>
 
@@ -52,12 +86,12 @@ const ProfileHeader = ({ data }) => {
           <p className="opacity05">Followers</p>
         </div>
         <div className="profileFirstBtnsDiv">
-          {currentUser.data.type === "company" && (
+          {currentUser?.data?.type === "company" && (
             <NavLink className="profileTmAbBtns" to="/profile/jobs">
               All jobs
             </NavLink>
           )}
-          {url === "/profile" ? (
+          {urlPath === "/profile" ? (
             <NavLink className="profileTmAbBtns" to="/profile/edit_profile">
               <AiOutlineEdit />
               Profile
